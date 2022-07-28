@@ -7,7 +7,7 @@ const Header = () => {
   const [isBurger, setBurger] = useState(false);
   return (
     <header className='header'>
-      <div className='header__content'>
+      <div className='content header__content'>
         <div className='header__info'>
           <img src={logo} alt='logo' className='header__logo' />
           <h2 className='header__name'>
