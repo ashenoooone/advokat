@@ -16,6 +16,7 @@ function App() {
           Learn React
         </a>
         <button className='button button_default'>Привет</button>
+        <button className='button button_gray'>Привет</button>
       </header>
     </div>
   );
