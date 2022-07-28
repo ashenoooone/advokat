@@ -1,0 +1,95 @@
+.card {
+  height: 521px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 413px;
+  width: 100%;
+  background: rgba(38, 22, 0, 0.05);
+
+  &__time,
+  &__title,
+  &__description {
+    margin: 0;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 24px;
+    min-height: 222px;
+    overflow: hidden;
+  }
+
+  &__time {
+    font-family: 'SourceSansPro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #b1a9a0;
+  }
+
+  &__title {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 130%;
+    color: #261600;
+  }
+
+  &__description {
+    font-family: 'SourceSansPro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: rgba(38, 22, 0, 0.8);
+  }
+
+  &__buttons {
+    display: flex;
+    padding: 0 24px 32px;
+    align-items: center;
+  }
+
+  &__buttos-container {
+    margin: 0 0 0 auto;
+    display: flex;
+    gap: 24px;
+  }
+
+  &__more {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px 0px 4px;
+    gap: 10px;
+    border-bottom: 1px solid #261600;
+    font-family: 'SourceSansPro';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+    color: #261600;
+    text-decoration: none;
+  }
+
+  &__button-box {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__number {
+    font-family: 'SourceSansPro';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+    color: #261600;
+  }
+}
