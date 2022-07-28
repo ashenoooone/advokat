@@ -1,76 +1,71 @@
 .header {
+  display: flex;
+  width: 100%;
+  padding: 17px 0 20px;
+
+  &__content {
     display: flex;
-    width: 100%;
+    align-items: center;
+  }
 
-    &__content {
-        display: flex;
-        width: 1095px;
-        margin: 0 auto;
-        align-items: center;
-        padding: 17px 16px 0;
-    }
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
 
-    &__info {
-        display: flex;
-        align-items: center;
-        gap: 24px;
-    }
+  &__name {
+    text-transform: uppercase;
+    font-family: 'Lora', 'Courier New', Courier, monospace;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 100%;
+    color: #261600;
+  }
 
-    &__name {
-        text-transform: uppercase;
-        font-family: 'Lora', 'Courier New', Courier, monospace;
-        font-weight: 700;
-        font-size: 30px;
-        line-height: 100%;
-        color: #261600;
-    }
+  &__job {
+    text-transform: uppercase;
+    font-family: 'Lora', 'Courier New', Courier, monospace;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: #261600;
+  }
 
-    &__job {
-        text-transform: uppercase;
-        font-family: 'Lora', 'Courier New', Courier, monospace;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 100%;
-        color: #261600;
-    }
+  &__nav {
+    display: flex;
+    gap: 60px;
+    margin: 0 0 0 auto;
+  }
 
-    &__nav {
-        display: flex;
-        gap: 60px;
-        margin: 0 0 0 auto;
-    }
+  &__link {
+    font-family: 'SourceSansPro', 'Courier New', Courier, monospace;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+    text-decoration: none;
+    color: #261600;
+  }
 
-    &__link {
-        font-family: 'SourceSansPro','Courier New', Courier, monospace;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 25px;
-        text-decoration: none;
-        color: #261600;
-    }
+  &__logo {
+    width: 100px;
+    height: 100px;
+  }
 
-    &__logo {
-        width: 100px;
-        height: 100px;
-    }
-
-    &__burger {
-        display: none;
-    }
+  &__burger {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1024px) {
-
-    .header {
-
-        &__link {
-            display: none;
-        }
-
-        &__burger {
-            display: block;
-        }
+  .header {
+    &__link {
+      display: none;
     }
-    
+
+    &__burger {
+      display: block;
+    }
+  }
 }
