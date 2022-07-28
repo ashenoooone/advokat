@@ -16,7 +16,7 @@ body {
   padding: 0 16px;
 
   @media screen and (max-width: 374px) {
-      padding: 0;    
+    padding: 0;
   }
 }
 
@@ -29,6 +29,13 @@ h1 {
   @media screen and (max-width: 1279px) {
     font-size: 59px;
     line-height: 76px;
+  }
+  @media screen and (max-width: 1023px) {
+    line-height: 100%;
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 48px;
+    line-height: 48px;
   }
 }
 
@@ -66,12 +73,12 @@ h1 {
   margin: 0;
 
   @media screen and (max-width: 1023px) {
-      font-size: 44px;
-      line-height: 56px;
+    font-size: 44px;
+    line-height: 56px;
   }
 
   @media screen and (max-width: 374px) {
-      font-size: 24px;
-      line-height: 31px;
+    font-size: 24px;
+    line-height: 31px;
   }
 }
