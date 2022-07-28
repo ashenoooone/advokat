@@ -1,45 +1,100 @@
 .service {
+  &__card {
+    display: flex;
+    align-items: flex-start;
+    gap: 48px;
+  }
 
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__list {
+    list-style: '— ';
+    padding: 0 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 150%;
+    color: #261600;
+  }
+
+  &__item {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: #261600;
+  }
+
+  @media screen and (max-width: 764px) {
     &__card {
-        display: flex;
-        align-items: flex-start;
-        gap: 48px;
+      flex-direction: column;
+      gap: 16px;
     }
-
-    &__content {
-        display: flex;
-        flex-direction: column;
+    &__item {
+      font-size: 16px;
     }
-
-    &__list {
-        list-style: '— ';
-        padding: 0 0 0 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-    }
-
-    &__title {
-        margin: 0;
-    }
+  }
 }
 
 .legal-assist {
-    margin: 0 auto;
-    padding: 0 40px;
-    
-    &__content {
-        max-width: 1280px;
-        width: 100%;
-        background: #F4F3F2;
-        padding: 48px 108px 80px;
-        margin: 0 auto;
+  margin: 0 auto;
+  padding: 0 40px;
+
+  &__content {
+    max-width: 1280px;
+    width: 100%;
+    background: #f4f3f2;
+    padding: 48px 108px 80px;
+  }
+
+  &__service {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    padding: 40px 0 0;
+  }
+
+  @media screen and (max-width: 1023px) {
+    .legal-assist {
+      &__content {
+        gap: 40px;
+        padding: 48px 48px 80px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 764px) {
+    .legal-assist {
+      &__content {
+        gap: 32px;
+        padding: 48px 32px 60px;
+      }
     }
 
     &__service {
-        display: flex;
-        flex-direction: column;
-        gap: 48px;
-        padding: 40px 0 0;
+      gap: 32px;
     }
+  }
+
+  @media screen and (max-width: 374px) {
+    
+        width: 100%;
+        padding: 0;
+        &__content {
+            width: 100%;
+            padding: 48px 16px 60px;
+        }    
+  }
 }

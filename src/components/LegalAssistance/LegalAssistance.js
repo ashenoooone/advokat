@@ -7,7 +7,7 @@ import legalitem4 from '../../assets/legalitem4.svg';
 
 const LegalAssistance = () => {
   return (
-    <section className='legal-assist'>
+    <section className='content legal-assist'>
       <div className='legal-assist__content'>
         <h2 className='title legal-assist__title'>
           Юридическая помощь физическим и юридическим лицам
