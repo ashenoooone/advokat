@@ -1,4 +1,5 @@
 @use 'vendor/fonts/font.scss';
+
 * {
   box-sizing: border-box;
 }
@@ -13,6 +14,10 @@ body {
   margin: 0 auto;
   width: 100%;
   padding: 0 16px;
+
+  @media screen and (max-width: 374px) {
+    padding: 0;
+  }
 }
 
 h1 {
@@ -38,17 +43,20 @@ h1 {
   outline: 0;
   border: 0;
   cursor: pointer;
+
   &_default {
     background: #cfac7d;
     border-radius: 12px;
     color: #ffffff;
   }
+
   &_gray {
     background: #f4f3f2;
     border: 1px solid #f4f3f2;
     border-radius: 8px;
     color: #261600;
   }
+
   &:hover {
     color: #ffffff;
     background: #261600;
@@ -63,4 +71,14 @@ h1 {
   line-height: 72px;
   color: #261600;
   margin: 0;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 44px;
+    line-height: 56px;
+  }
+
+  @media screen and (max-width: 374px) {
+    font-size: 24px;
+    line-height: 31px;
+  }
 }
