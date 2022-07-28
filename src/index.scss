@@ -25,6 +25,13 @@ h1 {
     font-size: 59px;
     line-height: 76px;
   }
+  @media screen and (max-width: 1023px) {
+    line-height: 100%;
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 48px;
+    line-height: 48px;
+  }
 }
 
 .button {
