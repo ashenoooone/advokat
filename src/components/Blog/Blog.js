@@ -25,7 +25,7 @@ const Blog = () => {
     },
   ];
   return (
-    <section className='content blog'>
+    <section className='blog'>
       <h2 className='title blog__title'>Блог</h2>
       <div className='blog__container'>
         {cards.map((card) => (
