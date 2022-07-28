@@ -54,4 +54,23 @@
         width: 100px;
         height: 100px;
     }
+
+    &__burger {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+
+    .header {
+
+        &__link {
+            display: none;
+        }
+
+        &__burger {
+            display: block;
+        }
+    }
+    
 }

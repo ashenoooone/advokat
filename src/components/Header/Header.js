@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './header.scss';
 import logo from '../../assets/Vector.svg';
+import burger from '../../assets/burger.svg';
 
 const Header = () => {
+  const [isBurger, setBurger] = useState(false);
   return (
     <header className='header'>
       <div className='header__content'>
@@ -24,6 +26,7 @@ const Header = () => {
           <a href='#' className='header__link'>
             Контакты
           </a>
+          <img src={burger} alt='burger menu' className={'header__burger'} />
         </nav>
       </div>
     </header>
