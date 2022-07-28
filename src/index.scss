@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
+.button {
+  padding: 10px 0;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  &_default {
+    background: #cfac7d;
+    border-radius: 12px;
+    color: #ffffff;
+  }
+  &_gray {
+    background: #f4f3f2;
+    border: 1px solid #f4f3f2;
+    border-radius: 8px;
+    color: #261600;
+  }
+  &:hover {
+    background: #261600;
+  }
+}

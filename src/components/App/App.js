@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 
 function App() {
   return (
@@ -16,6 +15,7 @@ function App() {
         >
           Learn React
         </a>
+        <button className='button button_default'>Привет</button>
       </header>
     </div>
   );
