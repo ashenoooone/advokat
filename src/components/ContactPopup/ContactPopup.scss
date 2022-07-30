@@ -1,0 +1,57 @@
+.contact {
+  position: absolute;
+  display: none;
+  overflow: hidden;
+  width: 320px;
+  background: #ffffff;
+  right: 16px;
+  bottom: -161px;
+  border: 1px solid #b1a9a0;
+
+  &_active {
+    display: block;
+    overflow: auto;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+  }
+
+  &__numbers {
+    display: flex;
+    gap: 24px;
+  }
+
+  &__number {
+    font-family: 'SourceSansPro';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+    color: #261600;
+    margin: 0;
+  }
+
+  &__mail {
+    font-family: 'SourceSansPro';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+    color: #261600;
+    margin: 0;
+  }
+
+  &__adress {
+    font-family: 'SourceSansPro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #261600;
+    margin: 0;
+  }
+}
