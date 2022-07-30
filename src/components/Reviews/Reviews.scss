@@ -1,0 +1,38 @@
+.reviews {
+  &__buttons {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__scroll-buttons {
+    display: flex;
+    gap: 12px;
+  }
+  .button {
+    padding: 8px 0;
+    width: 132px;
+    font-size: 16px;
+    line-height: 20px;
+    &_default {
+      width: 200px;
+    }
+  }
+  &__heading {
+    display: flex;
+    gap: 40px;
+    align-items: baseline;
+    font-family: 'Lora';
+    margin-bottom: 16px;
+  }
+  &__count {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 51px;
+    color: #b1a9a0;
+    margin: 0;
+  }
+  &__slider {
+    display: flex;
+    gap: 20px;
+  }
+}
