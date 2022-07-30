@@ -32,6 +32,17 @@ const Blog = () => {
           <BlogCard {...card} />
         ))}
       </div>
+      <div className='pagination'>
+        <button className='button button_gray'>Назад</button>
+        <button className='pagination__button pagination__button_active'>
+          1
+        </button>
+        <button className='pagination__button'>2</button>
+        <button className='pagination__button'>3</button>
+        <button className='pagination__button'>...</button>
+        <button className='pagination__button'>7</button>
+        <button className='button button_gray'>Вперед</button>
+      </div>
     </section>
   );
 };

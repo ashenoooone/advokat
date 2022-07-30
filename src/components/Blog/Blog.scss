@@ -15,3 +15,30 @@
     gap: 20px;
   }
 }
+
+.pagination {
+  padding: 24px 0 0;
+  display: flex;
+  gap: 12px;
+
+  &__button {
+    background-color: transparent;
+    border: 1px solid #261600;
+    color: #261600;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+
+    &_active {
+      background-color: #261600;
+      color: #FFFFFF;
+    }
+  }
+}
+
+.button {
+  padding: 8px 0;
+  width: 132px;
+  font-size: 16px;
+  line-height: 20px;
+}
