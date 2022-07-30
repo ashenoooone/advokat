@@ -12,7 +12,6 @@ const BlogCard = ({ image, time, title, text }) => {
     }
   };
 
-  console.log('одних это способ защитить свое имущество, имя, ...'.length);
   return (
     <div className='card'>
       <img src={image} alt='card img' />
