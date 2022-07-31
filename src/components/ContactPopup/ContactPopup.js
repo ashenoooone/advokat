@@ -3,7 +3,7 @@ import './ContactPopup.scss';
 import whatsup from '../../assets/whatsup.svg';
 
 const ContactPopup = ({ isOpen, setOpen }) => {
-  const handleEscapeClose = (e) => e.key == 'Escape' && setOpen(false);
+  const handleEscapeClose = (e) => e.key === 'Escape' && setOpen(false);
   useEffect(() => {
     document.addEventListener('keydown', handleEscapeClose);
     return () => {
