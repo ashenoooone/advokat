@@ -6,12 +6,19 @@
   &__content {
     display: flex;
     align-items: center;
+    position: relative;
   }
 
   &__info {
     display: flex;
     align-items: center;
     gap: 24px;
+    @media screen and (max-width: 764px) {
+      gap: 8px;
+    }
+    @media screen and (max-width: 390px) {
+      padding-left: 16px;
+    }
   }
 
   &__name {
@@ -21,6 +28,14 @@
     font-size: 30px;
     line-height: 100%;
     color: #261600;
+    @media screen and (max-width: 764px) {
+      font-size: 20px;
+      line-height: 20px;
+    }
+    @media screen and (max-width: 390px) {
+      font-size: 16px;
+      line-height: 16px;
+    }
   }
 
   &__job {
@@ -30,6 +45,10 @@
     font-size: 16px;
     line-height: 100%;
     color: #261600;
+    @media screen and (max-width: 764px) {
+      font-size: 14px;
+      line-height: 14px;
+    }
   }
 
   &__nav {
@@ -51,10 +70,21 @@
   &__logo {
     width: 100px;
     height: 100px;
+    @media screen and (max-width: 764px) {
+      width: 50px;
+      height: 50px;
+    }
+    @media screen and (max-width: 390px) {
+      width: 40px;
+      height: 40px;
+    }
   }
 
   &__burger {
     display: none;
+    @media screen and (max-width: 390px) {
+      padding: 0 16px 0 0;
+    }
   }
 }
 
