@@ -3,10 +3,14 @@
     margin-top: 24px;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
   &__scroll-buttons {
     display: flex;
     gap: 12px;
+  }
+  .content {
+    padding: 80px 0 0;
   }
   .button {
     padding: 8px 0;
@@ -32,7 +36,39 @@
     margin: 0;
   }
   &__slider {
-    display: flex;
+    overflow: hidden;
+  }
+  &__carousel {
+    display: grid;
+    position: relative;
+    width: 100%;
+    grid-auto-flow: column;
     gap: 20px;
+  }
+  @media screen and (max-width: 1279px) {
+    .content {
+      padding: 56px 60px 0;
+    }
+  }
+  @media screen and (max-width: 1023px) {
+    .content {
+      padding: 56px 40px 0;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .content {
+      padding: 56px 16px 0;
+    }
+    .button_gray {
+      flex-basis: 50%;
+    }
+    &__scroll-buttons {
+      width: 100%;
+      margin-bottom: 16px;
+      justify-content: space-between;
+    }
+    .button_default {
+      width: 100%;
+    }
   }
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import './ReviewCard.scss';
-const ReviewCard = ({ name, date, rating, text }) => {
+import { motion } from 'framer-motion';
+
+const ReviewCard = React.forwardRef(({ name, date, rating, text }) => {
   return (
     <div className='review'>
       <div className='review__heading'>
@@ -20,6 +22,7 @@ const ReviewCard = ({ name, date, rating, text }) => {
       <p className='review__text'>{text}</p>
     </div>
   );
-};
+});
 
-export default ReviewCard;
+const MReviewCard = motion(ReviewCard, { forwardMotionProps: true });
+export default MReviewCard;

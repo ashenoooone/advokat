@@ -1,0 +1,108 @@
+.footer {
+  background-color: #282828;
+  &__columns {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .content {
+    padding: 40px 16px 32px;
+  }
+  &__info {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  &__copyright {
+    font-family: 'SourceSansPro';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 16px 0 0;
+  }
+  &__name {
+    font-family: 'Lora';
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 30px;
+    text-transform: uppercase;
+    color: #ffffff;
+    width: max-content;
+    margin: 0;
+  }
+  &__job {
+    font-size: 16px;
+    line-height: 16px;
+  }
+  &__contact {
+    font-family: 'SourceSansPro';
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 40px;
+    margin: 0;
+    color: #ffffff;
+  }
+  &__adress {
+    color: #ffffff;
+    font-family: 'SourceSansPro';
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    margin: 0;
+  }
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  @media screen and (max-width: 1279px) {
+    .content {
+      padding: 40px 60px 32px;
+    }
+    &__contacts {
+      gap: 8px;
+    }
+  }
+  @media screen and (max-width: 1023px) {
+    .content {
+      padding: 40px 40px 32px;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .content {
+      padding: 24px 16px;
+    }
+    &__job {
+      font-size: 14px;
+      line-height: 14px;
+    }
+    &__name {
+      font-size: 20px;
+      line-height: 20px;
+    }
+    &__logo {
+      width: 50px;
+      height: 50px;
+    }
+    &__contact {
+      font-size: 24px;
+      line-height: 30px;
+    }
+    &__adress {
+      font-size: 20px;
+      line-height: 25px;
+    }
+  }
+  @media screen and (max-width: 374px) {
+    .content {
+      padding: 24px 16px 24px;
+    }
+    &__contact {
+      font-size: 20px;
+      line-height: 25px;
+    }
+  }
+}

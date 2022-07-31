@@ -1,5 +1,6 @@
 .review {
-  width: 50%;
+  flex-shrink: 0;
+  width: 630px;
   background: rgba(38, 22, 0, 0.05);
   padding: 32px;
   &__name {
