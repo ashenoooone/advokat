@@ -10,6 +10,14 @@ const Consul = () => {
   const onOpenPopupClick = () => {
     setIsPopupOpened(!isPopupOpened);
   };
+  const onClosePopupClick = (e) => {
+    const classes = e.target.classList;
+    if (
+      classes.contains('consul-popup') ||
+      classes.contains('consul-popup__close-button')
+    )
+      setIsPopupOpened(false);
+  };
   return (
     <section className='consul'>
       <div className='content'>
@@ -46,16 +54,10 @@ const Consul = () => {
         <div className='consul__portret'></div>
         <img src={logo} alt='Логотип' className='consul__logo' />
       </div>
-      <AnimatePresence>
-        {isPopupOpened && (
-          <ConsulPopup
-            initial={{ x: 300, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -300, opacity: 0 }}
-            transition={{ bounce: 'none' }}
-          />
-        )}
-      </AnimatePresence>
+      <ConsulPopup
+        onClosePopupClick={onClosePopupClick}
+        isOpened={isPopupOpened}
+      />
     </section>
   );
 };
