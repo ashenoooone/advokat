@@ -1,6 +1,5 @@
 .header {
   display: flex;
-  flex-direction: column;
   width: 100%;
   padding: 17px 0 20px;
   position: sticky;
@@ -81,7 +80,7 @@
       background: white;
       width: 100%;
       margin: 0 auto;
-      overflow: hidden;
+      // overflow: hidden;
       border-bottom: 1px solid #b1a9a0;
     }
     &-link {
@@ -130,12 +129,9 @@
 
 @media screen and (max-width: 1023px) {
   .header {
-    &__link {
-      display: none;
-    }
-
     &__burger {
       display: block;
+      margin: 0 0 0 auto;
     }
   }
 }

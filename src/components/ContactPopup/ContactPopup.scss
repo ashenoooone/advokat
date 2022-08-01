@@ -4,10 +4,12 @@
   overflow: hidden;
   width: 320px;
   background: #ffffff;
-  right: 16px;
   bottom: -125px;
   border: 1px solid #b1a9a0;
-  z-index: 1;
+  z-index: 2;
+  @media screen and (max-width: 1023px) {
+    bottom: -145px;
+  }
 
   &_active {
     display: block;
