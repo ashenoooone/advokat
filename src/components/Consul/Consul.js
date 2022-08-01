@@ -1,9 +1,15 @@
 import React from 'react';
 import './Consul.scss';
-import Roman from '../../assets/Roman.jpg';
 import logo from '../../assets/logo_gray.svg';
+import ConsulPopup from '../ConsulPopup/ConsulPopup';
+import { AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 
 const Consul = () => {
+  const [isPopupOpened, setIsPopupOpened] = useState(false);
+  const onOpenPopupClick = () => {
+    setIsPopupOpened(!isPopupOpened);
+  };
   return (
     <section className='consul'>
       <div className='content'>
@@ -30,7 +36,7 @@ const Consul = () => {
             Юридическая помощь физическим и юридическим лицам.
           </p>
         </div>
-        <button className='button button_default'>
+        <button className='button button_default' onClick={onOpenPopupClick}>
           Записаться на консультацию
         </button>
         <div className='consul__contacts'>
@@ -40,6 +46,16 @@ const Consul = () => {
         <div className='consul__portret'></div>
         <img src={logo} alt='Логотип' className='consul__logo' />
       </div>
+      <AnimatePresence>
+        {isPopupOpened && (
+          <ConsulPopup
+            initial={{ x: 300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -300, opacity: 0 }}
+            transition={{ bounce: 'none' }}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };
