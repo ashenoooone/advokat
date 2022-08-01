@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 17px 0 20px;
   position: sticky;
@@ -64,6 +65,30 @@
     display: flex;
     gap: 60px;
     margin: 0 0 0 auto;
+    &-burger {
+      display: flex;
+      position: absolute;
+      top: 125px;
+      z-index: 1;
+      background: white;
+      gap: 60px;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 16px;
+      overflow: hidden;
+      border-bottom: 1px solid #b1a9a0;
+    }
+    &-link {
+      font-family: 'SourceSansPro', 'Courier New', Courier, monospace;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 25px;
+      text-decoration: none;
+      color: #261600;
+      cursor: pointer;
+    }
   }
 
   &__link {
@@ -98,7 +123,7 @@
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   .header {
     &__link {
       display: none;
