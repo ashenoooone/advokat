@@ -60,23 +60,25 @@ const Header = () => {
       <AnimatePresence>
         {isBurger && (
           <motion.nav
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            initial={{ height: 0 }}
+            animate={{ height: 'auto' }}
             transition={{
               duration: 0.5,
             }}
-            exit={{ opacity: 0, height: 0 }}
+            exit={{ height: 0 }}
             className='header__nav-burger'
           >
-            <a href='#reviews' className='header__nav-link'>
-              Отзывы
-            </a>
-            <a href='#blog' className='header__nav-link'>
-              Блог
-            </a>
-            <span className='header__nav-link' onClick={handleOpenClick}>
-              Контакты
-            </span>
+            <div className='header__navs'>
+              <a href='#reviews' className='header__nav-link'>
+                Отзывы
+              </a>
+              <a href='#blog' className='header__nav-link'>
+                Блог
+              </a>
+              <span className='header__nav-link' onClick={handleOpenClick}>
+                Контакты
+              </span>
+            </div>
           </motion.nav>
         )}
       </AnimatePresence>
