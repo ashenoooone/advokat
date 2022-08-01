@@ -1,0 +1,53 @@
+.consul-popup {
+  position: absolute;
+  max-width: 260px;
+  width: 100%;
+  overflow: hidden;
+  top: 60%;
+  background: #ffffff;
+  border: 1px solid #b1a9a0;
+  left: 50%;
+  padding: 16px 24px 24px;
+  &__title {
+    margin: 0;
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 31px;
+    margin-bottom: 24px;
+  }
+  &__conf {
+    font-family: 'SourceSansPro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    width: 178px;
+    margin: 8px auto 0;
+  }
+  &__link {
+    text-decoration-line: underline;
+    color: #261600;
+  }
+}
+
+.consul-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  &__input {
+    border: 0;
+    font-family: 'SourceSansPro';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #261600;
+    border-bottom: 1px solid #b1a9a0;
+  }
+  .button_default {
+    padding: 10px 0;
+  }
+}
