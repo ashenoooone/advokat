@@ -4,19 +4,19 @@ import './ContactPopup.scss';
 import whatsup from '../../assets/whatsup.svg';
 
 const ContactPopup = ({ isOpen, setOpen }) => {
-  const handleEscapeClose = (e) => e.key === 'Escape' && setOpen(false);
-  const handleClosePopup = (e) => {
-    if (e.target.innerText === 'Контакты') return;
-    return !e.target.closest('#container') && setOpen(false);
-  };
   useEffect(() => {
+    const handleEscapeClose = (e) => e.key === 'Escape' && setOpen(false);
+    const handleClosePopup = (e) => {
+      if (e.target.innerText === 'Контакты') return;
+      return !e.target.closest('#container') && setOpen(false);
+    };
     document.addEventListener('keydown', handleEscapeClose);
     document.addEventListener('click', handleClosePopup);
     return () => {
       document.removeEventListener('keydown', handleEscapeClose);
       document.removeEventListener('click', handleClosePopup);
     };
-  }, [isOpen]);
+  }, [isOpen, setOpen]);
 
   return (
     <AnimatePresence>
