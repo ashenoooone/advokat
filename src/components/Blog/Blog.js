@@ -126,7 +126,7 @@ const Blog = () => {
   const firstIndex = lastIndex - blogPerPage;
   const currentBlogs = cards.slice(firstIndex, lastIndex);
   return (
-    <section className='blog'>
+    <section id='blog' className='blog'>
       <h2 className='title blog__title'>Блог</h2>
       <div className='blog__container'>
         {currentBlogs.map((card) => (

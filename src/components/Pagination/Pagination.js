@@ -10,9 +10,7 @@ const Pagination = ({ blogPerPage, totalBlog, paginate, currentPage }) => {
     <div className='pagination'>
       <button
         className='button button_gray'
-        onClick={() =>
-          currentPage - 1 >= pageNumbers[0] && paginate(currentPage - 1)
-        }
+        onClick={() => currentPage - 1 > 0 && paginate(currentPage - 1)}
       >
         Назад
       </button>
