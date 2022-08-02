@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import ReviewCard from '../ReviewCard/ReviewCard';
 import './Reviews.scss';
 import { motion } from 'framer-motion';
-const Reviews = ({ reviews }) => {
+import ReviewPopup from '../ReviewPopup/ReviewPopup';
+const Reviews = ({
+  reviews,
+  onOpenPopupClick,
+  onClosePopupClick,
+  isPopupOpened,
+}) => {
   const [currentReview, setCurrentReview] = useState(0);
   const onChangeReviewsClick = () => {
     if (currentReview !== reviews.length - 1)
@@ -46,9 +52,15 @@ const Reviews = ({ reviews }) => {
               Вперед
             </button>
           </div>
-          <button className='button button_default'>Оставить отзыв</button>
+          <button className='button button_default' onClick={onOpenPopupClick}>
+            Оставить отзыв
+          </button>
         </div>
       </div>
+      <ReviewPopup
+        isOpened={isPopupOpened}
+        onClosePopupClick={onClosePopupClick}
+      />
     </section>
   );
 };

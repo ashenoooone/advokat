@@ -12,10 +12,7 @@ const Consul = () => {
   };
   const onClosePopupClick = (e) => {
     const classes = e.target.classList;
-    if (
-      classes.contains('consul-popup') ||
-      classes.contains('consul-popup__close-button')
-    )
+    if (classes.contains('popup') || classes.contains('popup__close-button'))
       setIsPopupOpened(false);
   };
   return (

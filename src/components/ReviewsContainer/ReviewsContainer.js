@@ -1,7 +1,18 @@
 import React from 'react';
 import Reviews from '../Reviews/Reviews';
+import { useState } from 'react';
 
 const ReviewsContainer = () => {
+  const [isPopupOpened, setIsPopupOpened] = useState(false);
+  const onOpenPopupClick = () => {
+    setIsPopupOpened(true);
+  };
+  const onClosePopupClick = (e) => {
+    const classes = e.target.classList;
+    if (classes.contains('popup') || classes.contains('popup__close-button'))
+      setIsPopupOpened(false);
+  };
+
   const reviews = [
     {
       name: 'Анастасия',
@@ -34,7 +45,14 @@ const ReviewsContainer = () => {
       text: 'Засадил на 20 лет',
     },
   ];
-  return <Reviews reviews={reviews} />;
+  return (
+    <Reviews
+      reviews={reviews}
+      onOpenPopupClick={onOpenPopupClick}
+      onClosePopupClick={onClosePopupClick}
+      isPopupOpened={isPopupOpened}
+    />
+  );
 };
 
 export default ReviewsContainer;

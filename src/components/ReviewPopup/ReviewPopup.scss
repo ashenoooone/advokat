@@ -1,0 +1,43 @@
+.review-popup {
+  &__title {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 41px;
+  }
+  .button {
+    width: 100%;
+    padding: 16px 0;
+    font-family: 'SourceSansPro';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .popup__container {
+    max-width: 1062px;
+    width: 100%;
+    margin: 0 60px;
+  }
+  &__inputs {
+    display: flex;
+    gap: 21px;
+    .popup-form__input {
+      width: 50%;
+    }
+  }
+  .popup-form__input {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+  }
+  &__span {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 31px;
+  }
+}

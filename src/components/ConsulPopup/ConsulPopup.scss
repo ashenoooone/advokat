@@ -1,34 +1,4 @@
 .consul-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  width: 100%;
-  transition: all 0.1s linear;
-  &_active {
-    opacity: 1;
-    visibility: visible;
-  }
-  &__container {
-    max-width: 260px;
-    width: 100%;
-    position: relative;
-    background: #ffffff;
-    border: 1px solid #b1a9a0;
-    padding: 16px 24px 24px;
-  }
-  &__close-button {
-    position: absolute;
-    cursor: pointer;
-    right: 0;
-    top: -30px;
-  }
   &__title {
     margin: 0;
     font-family: 'Lora';
@@ -47,28 +17,5 @@
     text-align: center;
     width: 178px;
     margin: 8px auto 0;
-  }
-  &__link {
-    text-decoration-line: underline;
-    color: #261600;
-  }
-}
-
-.consul-form {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  &__input {
-    border: 0;
-    font-family: 'SourceSansPro';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-    color: #261600;
-    border-bottom: 1px solid #b1a9a0;
-  }
-  .button_default {
-    padding: 10px 0;
   }
 }

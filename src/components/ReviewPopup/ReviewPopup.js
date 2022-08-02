@@ -1,12 +1,12 @@
 import React from 'react';
-import './ConsulPopup.scss';
-import close from '../../assets/close-cross.svg';
 import { motion, AnimatePresence } from 'framer-motion';
+import close from '../../assets/close-cross.svg';
+import './ReviewPopup.scss';
 
-const ConsulPopup = ({ isOpened, onClosePopupClick }) => {
+const ReviewPopup = ({ isOpened, onClosePopupClick }) => {
   return (
     <section
-      className={`popup consul-popup ${isOpened && 'popup_active'}`}
+      className={`review-popup popup ${isOpened && 'popup_active'}`}
       onClick={onClosePopupClick}
     >
       <AnimatePresence>
@@ -24,23 +24,31 @@ const ConsulPopup = ({ isOpened, onClosePopupClick }) => {
               alt='Кнопка закрытия'
               className='popup__close-button'
             />
-            <h3 className='consul-popup__title'>Записаться на консультацию</h3>
+            <h3 className='review-popup__title'>Оставить отзыв</h3>
             <form className='popup-form'>
+              <div className='review-popup__inputs'>
+                <input
+                  type='text'
+                  className='popup-form__input'
+                  placeholder='Имя'
+                />
+                <input
+                  type='text'
+                  className='popup-form__input'
+                  placeholder='Email'
+                />
+              </div>
               <input
                 type='text'
                 className='popup-form__input'
-                placeholder='Имя'
+                placeholder='Отзыв'
               />
-              <input
-                type='text'
-                className='popup-form__input'
-                placeholder='Телефон или email'
-              />
-              <button className='button button_default'>Записаться</button>
+              <span className='review-popup__span'>Оценка</span>
+              <button className='button button_default'>Оставить отзыв</button>
             </form>
-            <p className='consul-popup__conf'>
+            <p className='review-popup__conf'>
               Нажимая на кнопку, я соглашаюсь с условиями{' '}
-              <a href='#' className='consul-popup__link'>
+              <a href='#' className='popup__link'>
                 политики конфиденциальности.
               </a>
             </p>
@@ -51,4 +59,4 @@ const ConsulPopup = ({ isOpened, onClosePopupClick }) => {
   );
 };
 
-export default ConsulPopup;
+export default ReviewPopup;
