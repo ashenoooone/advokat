@@ -26,7 +26,6 @@ const BlogCard = ({ image, time, title, text, id }) => {
 			return setOpen(!isOpen);
 	};
 	const handleClosePopup = e => {
-		console.log(e.target, e.target.closest('div').className);
 		if (
 			e.target.closest('div').className ===
 				'card__buttos-container' + ' card__buttos-container__' + id ||
