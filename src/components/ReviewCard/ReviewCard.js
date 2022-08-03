@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './ReviewCard.scss';
 
-const ReviewCard = ({ name, date, rating, text, width }) => {
-  const cardWidth = (width - 20) / 2;
-  console.log(cardWidth);
+const ReviewCard = ({
+  name,
+  date,
+  rating,
+  text,
+  width,
+  isDesktopResolution,
+}) => {
+  const [cardWidth, setCardWidth] = useState(0);
+  useEffect(() => {
+    if (isDesktopResolution) setCardWidth((width - 20) / 2);
+    else setCardWidth(width);
+  }, [isDesktopResolution, width]);
+
   return (
     <div
       className='review'

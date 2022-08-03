@@ -3,6 +3,8 @@ import ReviewCard from '../ReviewCard/ReviewCard';
 import './Reviews.scss';
 import { motion } from 'framer-motion';
 import ReviewPopup from '../ReviewPopup/ReviewPopup';
+import { useMatchMedia } from '../../hook/useMatchMedia';
+
 const Reviews = ({
   reviews,
   onOpenPopupClick,
@@ -12,10 +14,8 @@ const Reviews = ({
   const [currentReview, setCurrentReview] = useState(0);
   const [carouselWidth, setCarouselWidth] = useState(1280);
   const carouselRef = useRef(null);
+  const isDesktopResolution = useMatchMedia('(min-width:1280px)', true);
 
-  useLayoutEffect(() => {
-    setCarouselWidth(carouselRef.current.offsetWidth);
-  }, [carouselRef, carouselWidth]);
   const onChangeReviewsClick = () => {
     if (currentReview !== reviews.length - 1)
       setCurrentReview((currentReview) => currentReview + 1);
@@ -29,6 +29,10 @@ const Reviews = ({
   const onWindowResize = () => {
     setCarouselWidth(carouselRef.current.offsetWidth);
   };
+
+  useLayoutEffect(() => {
+    setCarouselWidth(carouselRef.current.offsetWidth);
+  }, [carouselRef, carouselWidth]);
 
   useEffect(() => {
     window.addEventListener('resize', onWindowResize);
@@ -47,12 +51,23 @@ const Reviews = ({
         <motion.div className='reviews__slider'>
           <motion.div
             className='reviews__carousel'
-            animate={{ left: -currentReview * ((carouselWidth + 20) / 2) }}
+            animate={{
+              left: isDesktopResolution
+                ? -currentReview * ((carouselWidth + 20) / 2)
+                : -currentReview * (carouselWidth + 20),
+            }}
             ref={carouselRef}
             transition={{ bounce: 'none' }}
           >
             {reviews.map((item, index) => {
-              return <ReviewCard width={carouselWidth} {...item} key={index} />;
+              return (
+                <ReviewCard
+                  isDesktopResolution={isDesktopResolution}
+                  width={carouselWidth}
+                  {...item}
+                  key={index}
+                />
+              );
             })}
           </motion.div>
         </motion.div>
