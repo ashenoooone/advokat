@@ -83,7 +83,13 @@ const Pagination = ({ blogPerPage, totalBlog, paginate, currentPage }) => {
 					pag[pag.length - 1],
 				]);
 			} else if (currentPage + 2 === pag[pag.length - 1]) {
-				setPag([1, '...', currentPage, currentPage + 1, pag[pag.length - 1]]);
+				setPag([
+					currentPage - 2,
+					currentPage - 1,
+					currentPage,
+					'...',
+					pag[pag.length - 1],
+				]);
 			} else if (currentPage + 3 === pag[pag.length - 1]) {
 				setPag([
 					currentPage - 1,
@@ -92,6 +98,7 @@ const Pagination = ({ blogPerPage, totalBlog, paginate, currentPage }) => {
 					'...',
 					pag[pag.length - 1],
 				]);
+				console.log(pag);
 			}
 		}
 		return (
@@ -118,6 +125,7 @@ const Pagination = ({ blogPerPage, totalBlog, paginate, currentPage }) => {
 		currentPage,
 		isPlus,
 		paginate,
+		totalBlog,
 		window.innerWidth,
 	]);
 	return (
