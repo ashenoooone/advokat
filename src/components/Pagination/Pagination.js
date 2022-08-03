@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useMatchMedia } from '../../hook/useMatchMedia';
 
 const Pagination = ({ blogPerPage, totalBlog, paginate, currentPage }) => {
@@ -19,64 +19,64 @@ const Pagination = ({ blogPerPage, totalBlog, paginate, currentPage }) => {
 			paginate(currentPage - 1);
 		}
 	};
+
 	useEffect(() => {
 		setPag(
 			[...Array(Math.ceil(totalBlog / blogPerPage))].map(
 				(_, index) => index + 1
 			)
 		);
-		setPag([pag[0], pag[1], pag[2], '...', Math.ceil(totalBlog / blogPerPage)]);
 	}, [isDesktopResolution, blogPerPage]);
 
-	useEffect(() => {
-		if (
-			currentPage === pag[2] &&
-			currentPage < Math.ceil(totalBlog / blogPerPage) - 2
-		) {
-			setPag([
-				pag[2],
-				pag[2] + 1,
-				pag[2] + 2,
-				'...',
-				Math.ceil(totalBlog / blogPerPage),
-			]);
+	const Pag = useMemo(() => {
+		console.log(currentPage);
+		if (pag.length > 4) {
+			setPag([pag[0], pag[1], pag[2], '...', pag[pag.length - 1]]);
 		}
-		if (isPlus && currentPage === Math.ceil(totalBlog / blogPerPage) - 3) {
-			setPag([
-				pag[1],
-				pag[2],
-				pag[2] + 1,
-				pag[2] + 2,
-				Math.ceil(totalBlog / blogPerPage),
-			]);
-		}
+		if (isPlus && pag[2] === currentPage)
+			setPag([pag[0] + 2, pag[1] + 2, pag[2] + 2, '...', pag[pag.length - 1]]);
 		if (!isPlus && pag[0] >= 1 && currentPage < pag[0]) {
 			setPag([
-				pag[0] - 3,
-				pag[1] - 3,
-				pag[2] - 3,
+				pag[0] - 2,
+				pag[1] - 2,
+				pag[2] - 2,
 				'...',
 				Math.ceil(totalBlog / blogPerPage),
 			]);
 		}
-	}, [currentPage, isDesktopResolution]);
-
+		return (
+			<>
+				{pag.map(number => {
+					return (
+						<button
+							key={number}
+							className={`pagination__button ${
+								number === currentPage && 'pagination__button_active'
+							}`}
+							onClick={() => number !== '...' && paginate(number)}
+						>
+							{number}
+						</button>
+					);
+				})}
+			</>
+		);
+	}, [
+		isDesktopResolution,
+		blogPerPage,
+		pag.length,
+		currentPage,
+		isPlus,
+		pag[0],
+		pag[1],
+		pag[2],
+	]);
 	return (
 		<div className='pagination'>
 			<button className='button button_gray' onClick={handleDecrement}>
 				Назад
 			</button>
-			{pag.map(number => (
-				<button
-					key={number}
-					className={`pagination__button ${
-						number === currentPage && 'pagination__button_active'
-					}`}
-					onClick={() => number !== '...' && paginate(number)}
-				>
-					{number}
-				</button>
-			))}
+			{Pag}
 			<button className='button button_gray' onClick={handleIncrement}>
 				Вперед
 			</button>
