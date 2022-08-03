@@ -53,4 +53,15 @@
   .icon-star_active {
     cursor: pointer;
   }
+  @media screen and (max-width: 767px) {
+    .popup__container {
+      margin: 0;
+    }
+    &__inputs {
+      flex-direction: column;
+      .popup-form__input {
+        width: 100%;
+      }
+    }
+  }
 }

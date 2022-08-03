@@ -1,10 +1,14 @@
 import React from 'react';
 import './ReviewCard.scss';
-import { motion } from 'framer-motion';
 
-const ReviewCard = React.forwardRef(({ name, date, rating, text }) => {
+const ReviewCard = ({ name, date, rating, text, width }) => {
+  const cardWidth = (width - 20) / 2;
+  console.log(cardWidth);
   return (
-    <div className='review'>
+    <div
+      className='review'
+      style={{ width: `${cardWidth ? cardWidth + 'px' : '100%'}` }}
+    >
       <div className='review__heading'>
         <div className='review__info'>
           <h3 className='review__name'>{name}</h3>
@@ -22,7 +26,6 @@ const ReviewCard = React.forwardRef(({ name, date, rating, text }) => {
       <p className='review__text'>{text}</p>
     </div>
   );
-});
+};
 
-const MReviewCard = motion(ReviewCard, { forwardMotionProps: true });
-export default MReviewCard;
+export default ReviewCard;
