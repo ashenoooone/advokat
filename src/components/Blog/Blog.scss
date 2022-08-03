@@ -2,8 +2,11 @@
 	width: 100%;
 	max-width: 1280px;
 	margin: 0 auto;
-	padding: 56px 60px 112px;
+	padding: 56px 0 112px;
 	box-sizing: border-box;
+	@media screen and (max-width: 1279px) {
+		padding: 56px 60px 112px;
+	}
 	@media screen and (max-width: 1023px) {
 		padding: 56px 40px 112px;
 	}
