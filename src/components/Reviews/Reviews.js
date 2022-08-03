@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import ReviewCard from '../ReviewCard/ReviewCard';
 import './Reviews.scss';
 import { motion } from 'framer-motion';
@@ -10,6 +10,12 @@ const Reviews = ({
   isPopupOpened,
 }) => {
   const [currentReview, setCurrentReview] = useState(0);
+  const [carouselWidth, setCarouselWidth] = useState(1280);
+  const carouselRef = useRef(null);
+
+  useLayoutEffect(() => {
+    setCarouselWidth(carouselRef.current.offsetWidth);
+  }, [carouselRef, carouselWidth]);
   const onChangeReviewsClick = () => {
     if (currentReview !== reviews.length - 1)
       setCurrentReview((currentReview) => currentReview + 1);
@@ -19,6 +25,17 @@ const Reviews = ({
     if (currentReview > 0)
       setCurrentReview((currentReview) => currentReview - 1);
   };
+
+  const onWindowResize = () => {
+    setCarouselWidth(carouselRef.current.offsetWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', onWindowResize);
+    return () => {
+      window.removeEventListener('resize', onWindowResize);
+    };
+  }, []);
 
   return (
     <section id='reviews' className='reviews'>
@@ -30,10 +47,12 @@ const Reviews = ({
         <motion.div className='reviews__slider'>
           <motion.div
             className='reviews__carousel'
-            animate={{ left: -currentReview * 650 }}
+            animate={{ left: -currentReview * ((carouselWidth + 20) / 2) }}
+            ref={carouselRef}
+            transition={{ bounce: 'none' }}
           >
             {reviews.map((item, index) => {
-              return <ReviewCard {...item} key={index} />;
+              return <ReviewCard width={carouselWidth} {...item} key={index} />;
             })}
           </motion.div>
         </motion.div>
