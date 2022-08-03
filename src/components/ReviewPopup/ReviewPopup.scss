@@ -6,6 +6,15 @@
     font-size: 32px;
     line-height: 41px;
   }
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  &__stars {
+    display: flex;
+    gap: 4px;
+  }
   .button {
     width: 100%;
     padding: 16px 0;
@@ -39,5 +48,9 @@
     font-weight: 700;
     font-size: 24px;
     line-height: 31px;
+  }
+  .icon-star_inactive,
+  .icon-star_active {
+    cursor: pointer;
   }
 }

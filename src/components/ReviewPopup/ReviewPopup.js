@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import close from '../../assets/close-cross.svg';
 import './ReviewPopup.scss';
+import { useState } from 'react';
 
 const ReviewPopup = ({ isOpened, onClosePopupClick }) => {
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const starsRating = useMemo(() => {
+    return [...Array(5)].map((item, index) => {
+      return (
+        <span
+          key={index}
+          onMouseEnter={() => setHoverRating(index)}
+          onMouseLeave={() => setHoverRating(0)}
+          onClick={() => setRating(index)}
+          className={`icon-star${
+            index <= hoverRating || (!hoverRating && rating >= index)
+              ? '_active'
+              : '_inactive'
+          }`}
+        ></span>
+      );
+    });
+  }, [hoverRating, rating]);
+
   return (
     <section
       className={`review-popup popup ${isOpened && 'popup_active'}`}
@@ -43,7 +64,10 @@ const ReviewPopup = ({ isOpened, onClosePopupClick }) => {
                 className='popup-form__input'
                 placeholder='Отзыв'
               />
-              <span className='review-popup__span'>Оценка</span>
+              <div className='review-popup__rating'>
+                <span className='review-popup__span'>Оценка</span>
+                <div className='review-popup__stars'>{starsRating}</div>
+              </div>
               <button className='button button_default'>Оставить отзыв</button>
             </form>
             <p className='review-popup__conf'>
