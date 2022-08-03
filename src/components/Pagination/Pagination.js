@@ -29,33 +29,71 @@ const Pagination = ({ blogPerPage, totalBlog, paginate, currentPage }) => {
 	}, [isDesktopResolution, blogPerPage]);
 
 	const Pag = useMemo(() => {
-		console.log(currentPage);
-		if (
-			isPlus &&
-			pag[2] === currentPage &&
-			currentPage <= Math.ceil(totalBlog / blogPerPage) - 2
-		) {
-			setPag([pag[0] + 2, pag[1] + 2, pag[2] + 2, '...', pag[pag.length - 1]]);
-			if (isPlus && currentPage === Math.ceil(totalBlog / blogPerPage) - 3) {
+		if (isPlus && pag.length > 4) {
+			if (currentPage === 1)
+				setPag([pag[0], pag[1], pag[2], '...', pag[pag.length - 1]]);
+			else if (currentPage === pag[pag.length - 1]) {
+				setPag([1, '...', currentPage - 2, currentPage - 1, currentPage]);
+			} else if (currentPage + 1 === pag[pag.length - 1]) {
+				setPag([1, '...', currentPage - 1, currentPage, currentPage + 1]);
+			} else if (currentPage + 2 === pag[pag.length - 1]) {
+				setPag([1, '...', currentPage, currentPage + 1, pag[pag.length - 1]]);
+			} else {
 				setPag([
-					...pag.map(i => i + 2).slice(0, pag.indexOf('...2') - 1),
-					Math.ceil(totalBlog / blogPerPage),
+					currentPage - 1,
+					currentPage,
+					currentPage + 1,
+					'...',
+					pag[pag.length - 1],
+				]);
+			}
+		} else if (pag.length > 4 && !isPlus) {
+			if (currentPage >= 1 && currentPage <= 3)
+				if (currentPage === 3)
+					setPag([
+						currentPage - 2,
+						currentPage - 1,
+						currentPage,
+						'...',
+						pag[pag.length - 1],
+					]);
+				else if (currentPage === 2)
+					setPag([
+						currentPage - 1,
+						currentPage,
+						currentPage + 1,
+						'...',
+						pag[pag.length - 1],
+					]);
+				else {
+					setPag([
+						currentPage,
+						currentPage + 1,
+						currentPage + 2,
+						'...',
+						pag[pag.length - 1],
+					]);
+				}
+			if (currentPage === pag[0] && currentPage - 1 > 0) {
+				setPag([
+					currentPage - 1,
+					currentPage,
+					currentPage + 1,
+					'...',
+					pag[pag.length - 1],
+				]);
+			} else if (currentPage + 2 === pag[pag.length - 1]) {
+				setPag([1, '...', currentPage, currentPage + 1, pag[pag.length - 1]]);
+			} else if (currentPage + 3 === pag[pag.length - 1]) {
+				setPag([
+					currentPage - 1,
+					currentPage,
+					currentPage + 1,
+					'...',
+					pag[pag.length - 1],
 				]);
 			}
 		}
-		if (!isPlus && pag[0] >= 1 && currentPage < pag[0]) {
-			setPag([
-				pag[0] - 2,
-				pag[1] - 2,
-				pag[2] - 2,
-				'...',
-				Math.ceil(totalBlog / blogPerPage),
-			]);
-		}
-		if (pag.length > 4) {
-			setPag([pag[0], pag[1], pag[2], '...', pag[pag.length - 1]]);
-		}
-
 		return (
 			<>
 				{pag.map(number => {
@@ -79,8 +117,8 @@ const Pagination = ({ blogPerPage, totalBlog, paginate, currentPage }) => {
 		pag.length,
 		currentPage,
 		isPlus,
-		pag[0],
-		pag[2],
+		paginate,
+		window.innerWidth,
 	]);
 	return (
 		<div className='pagination'>
