@@ -6,6 +6,19 @@ const Pagination = ({ blogPerPage, totalBlog, paginate, currentPage }) => {
 	const [pag, setPag] = useState(
 		[...Array(Math.ceil(totalBlog / blogPerPage))].map((_, index) => index + 1)
 	);
+	const [isPlus, setPlus] = useState(true);
+	const handleIncrement = () => {
+		if (currentPage + 1 <= pag[pag.length - 1]) {
+			setPlus(true);
+			paginate(currentPage + 1);
+		}
+	};
+	const handleDecrement = () => {
+		if (currentPage - 1 > 0) {
+			setPlus(false);
+			paginate(currentPage - 1);
+		}
+	};
 	useEffect(() => {
 		setPag(
 			[...Array(Math.ceil(totalBlog / blogPerPage))].map(
@@ -28,7 +41,7 @@ const Pagination = ({ blogPerPage, totalBlog, paginate, currentPage }) => {
 				Math.ceil(totalBlog / blogPerPage),
 			]);
 		}
-		if (currentPage === Math.ceil(totalBlog / blogPerPage) - 3) {
+		if (isPlus && currentPage === Math.ceil(totalBlog / blogPerPage) - 3) {
 			setPag([
 				pag[1],
 				pag[2],
@@ -37,11 +50,11 @@ const Pagination = ({ blogPerPage, totalBlog, paginate, currentPage }) => {
 				Math.ceil(totalBlog / blogPerPage),
 			]);
 		}
-		if (pag[0] >= 1 && currentPage < pag[0]) {
+		if (!isPlus && pag[0] >= 1 && currentPage < pag[0]) {
 			setPag([
-				pag[0] - 2,
-				pag[1] - 2,
-				pag[2] - 2,
+				pag[0] - 3,
+				pag[1] - 3,
+				pag[2] - 3,
 				'...',
 				Math.ceil(totalBlog / blogPerPage),
 			]);
@@ -50,10 +63,7 @@ const Pagination = ({ blogPerPage, totalBlog, paginate, currentPage }) => {
 
 	return (
 		<div className='pagination'>
-			<button
-				className='button button_gray'
-				onClick={() => currentPage - 1 > 0 && paginate(currentPage - 1)}
-			>
+			<button className='button button_gray' onClick={handleDecrement}>
 				Назад
 			</button>
 			{pag.map(number => (
@@ -67,12 +77,7 @@ const Pagination = ({ blogPerPage, totalBlog, paginate, currentPage }) => {
 					{number}
 				</button>
 			))}
-			<button
-				className='button button_gray'
-				onClick={() =>
-					currentPage + 1 <= pag[pag.length - 1] && paginate(currentPage + 1)
-				}
-			>
+			<button className='button button_gray' onClick={handleIncrement}>
 				Вперед
 			</button>
 		</div>
