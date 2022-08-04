@@ -14,7 +14,6 @@ const Blog = () => {
 		isDesktopResolution ? setBlogPerPage(3) : setBlogPerPage(2);
 	}, [isDesktopResolution]);
 
-	const paginate = pageNumber => setCurrentPage(pageNumber);
 	const cards = [
 		{
 			id: 1,
@@ -199,8 +198,8 @@ const Blog = () => {
 			<Pagination
 				blogPerPage={blogPerPage}
 				totalBlog={cards.length}
-				paginate={paginate}
 				currentPage={currentPage}
+				setCurrentPage={setCurrentPage}
 			/>
 		</section>
 	);
