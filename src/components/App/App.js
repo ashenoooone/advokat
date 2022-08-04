@@ -6,6 +6,7 @@ import Header from '../Header/Header';
 import { Routes, Route } from 'react-router-dom';
 import LegalAssistance from '../LegalAssistance/LegalAssistance';
 import ReviewsContainer from '../ReviewsContainer/ReviewsContainer';
+import Article from '../Article/Article';
 
 function App() {
 	return (
@@ -23,7 +24,7 @@ function App() {
 						</>
 					}
 				/>
-				<Route path='/article/:id' element='' />
+				<Route path='/article/:id' element={<Article />} />
 			</Routes>
 			<Footer />
 		</div>
