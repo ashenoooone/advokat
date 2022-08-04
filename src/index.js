@@ -4,9 +4,14 @@ import App from './components/App/App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import 'normalize.css';
 import './index.scss';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(
+	<BrowserRouter>
+		<App />
+	</BrowserRouter>
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
