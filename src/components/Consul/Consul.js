@@ -2,7 +2,6 @@ import React from 'react';
 import './Consul.scss';
 import logo from '../../assets/logo_gray.svg';
 import ConsulPopup from '../ConsulPopup/ConsulPopup';
-import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
 const Consul = () => {
