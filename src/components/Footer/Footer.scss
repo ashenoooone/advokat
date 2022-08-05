@@ -1,5 +1,6 @@
 .footer {
   background-color: #282828;
+  flex-shrink: 0;
   &__columns {
     display: flex;
     justify-content: space-between;

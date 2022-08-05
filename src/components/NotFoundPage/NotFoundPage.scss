@@ -1,0 +1,87 @@
+@keyframes rover {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-180deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+.error-page {
+  .content {
+    padding: 16px 60px 80px;
+    display: flex;
+    align-items: center;
+    min-height: 630px;
+    position: relative;
+  }
+  &__title {
+    font-family: 'Lora';
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 61px;
+    color: #261600;
+    margin: 8px 0 56px;
+  }
+  &__subtitle {
+    font-weight: 400;
+    margin: 0;
+    font-size: 32px;
+    line-height: 40px;
+    color: #b1a9a0;
+  }
+  .button {
+    max-width: 288px;
+    width: 100%;
+    padding: 18px 0;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  &__svg {
+    position: absolute;
+    right: 0;
+    width: 630px;
+    height: 630px;
+    z-index: -1;
+    #Group-2 {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: rover 8s linear infinite;
+    }
+  }
+  @media screen and (max-width: 1279px) {
+    .content {
+      min-height: 366px;
+    }
+    &__svg {
+      width: 366px;
+      height: 366px;
+    }
+  }
+  @media screen and (max-width: 1023px) {
+    .content {
+      min-height: 344px;
+      padding: 24px 40px 80px;
+    }
+    &__svg {
+      width: 344px;
+      height: 344px;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .button {
+      width: 100%;
+    }
+    .content {
+      justify-content: center;
+      padding: 24px 16px 80px;
+    }
+    &__svg {
+      margin: 0 auto;
+      right: auto;
+    }
+  }
+}
