@@ -6,7 +6,6 @@ import Header from '../Header/Header';
 import { Routes, Route } from 'react-router-dom';
 import LegalAssistance from '../LegalAssistance/LegalAssistance';
 import ReviewsContainer from '../ReviewsContainer/ReviewsContainer';
-import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 function App() {
   return (
@@ -16,16 +15,15 @@ function App() {
         <Route
           path='/'
           element={
-            <div className='page'>
+            <>
               <Consul />
               <LegalAssistance />
               <ReviewsContainer />
               <Blog />
-            </div>
+            </>
           }
         />
         <Route path='/article/:id' element='' />
-        <Route path='/*' element={<NotFoundPage />} />
       </Routes>
       <Footer />
     </div>
