@@ -151,3 +151,21 @@ h1 {
     padding: 10px 0;
   }
 }
+
+.logo_animation {
+  animation: rover 8s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes rover {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-180deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
