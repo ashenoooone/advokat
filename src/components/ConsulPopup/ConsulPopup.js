@@ -1,9 +1,18 @@
-import React from 'react';
+import { useState } from 'react';
 import './ConsulPopup.scss';
 import close from '../../assets/close-cross.svg';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import ConfPopup from '../ConfPopup/ConfPopup';
 const ConsulPopup = ({ isOpened, onClosePopupClick }) => {
+  const [isPopupOpened, setIsPopupOpened] = useState(false);
+  const onCloseConfPopupClick = (e) => {
+    e.preventDefault();
+    setIsPopupOpened(false);
+  };
+  const onOpenPopupClick = (e) => {
+    e.preventDefault();
+    setIsPopupOpened(true);
+  };
   return (
     <section
       className={`popup consul-popup ${isOpened && 'popup_active'}`}
@@ -40,13 +49,21 @@ const ConsulPopup = ({ isOpened, onClosePopupClick }) => {
             </form>
             <p className='consul-popup__conf'>
               Нажимая на кнопку, я соглашаюсь с условиями{' '}
-              <a href='#' className='consul-popup__link'>
+              <a
+                href='#'
+                className='consul-popup__link'
+                onClick={onOpenPopupClick}
+              >
                 политики конфиденциальности.
               </a>
             </p>
           </motion.div>
         )}
       </AnimatePresence>
+      <ConfPopup
+        onClosePopupClick={onCloseConfPopupClick}
+        isOpened={isPopupOpened}
+      />
     </section>
   );
 };
