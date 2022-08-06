@@ -105,6 +105,37 @@ const Article = () => {
 						))}
 					</div>
 				</div>
+				<div className='reviews-form'>
+					<div className='reviews-form__container'>
+						<h3 className='review-popup__title'>Оставить отзыв</h3>
+						<form className='popup-form'>
+							<div className='review-popup__inputs'>
+								<input
+									type='text'
+									className='popup-form__input'
+									placeholder='Имя'
+								/>
+								<input
+									type='text'
+									className='popup-form__input'
+									placeholder='Email'
+								/>
+							</div>
+							<input
+								type='text'
+								className='popup-form__input'
+								placeholder='Комментарий'
+							/>
+							<button className='reviews-form__button'>Отправить</button>
+						</form>
+						<p className='review-popup__conf'>
+							Нажимая на кнопку, я соглашаюсь с условиями{' '}
+							<a href='#' className='popup__link'>
+								политики конфиденциальности.
+							</a>
+						</p>
+					</div>
+				</div>
 			</div>
 		</main>
 	);

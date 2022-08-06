@@ -101,3 +101,27 @@
 		gap: 32px;
 	}
 }
+
+.reviews-form {
+	padding: 0 108px 119px;
+	&__container {
+		border: 1px solid #b1a9a0;
+		padding: 40px 109px;
+	}
+	&__button {
+		outline: 0;
+		border: 0;
+		cursor: pointer;
+		transition: all 0.2s linear;
+		background: #cfac7d;
+		border-radius: 12px;
+		color: #ffffff;
+		padding: 15.5px 0;
+		font-family: 'SourceSansPro';
+		font-style: normal;
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 25px;
+		color: #ffffff;
+	}
+}
