@@ -9,7 +9,6 @@ const Blog = () => {
 	const [blogPerPage, setBlogPerPage] = useState(3);
 
 	const isDesktopResolution = useMatchMedia('(max-width:1050px)', true);
-	console.log(isDesktopResolution);
 	useEffect(() => {
 		!isDesktopResolution ? setBlogPerPage(3) : setBlogPerPage(2);
 	}, [isDesktopResolution]);
