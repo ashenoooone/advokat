@@ -7,7 +7,10 @@ const ConsulPopup = ({ isOpened, onClosePopupClick }) => {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
   const onCloseConfPopupClick = (e) => {
     e.preventDefault();
-    setIsPopupOpened(false);
+    const classes = e.target.classList;
+    e.stopPropagation();
+    if (classes.contains('popup') || classes.contains('popup__close-button'))
+      setIsPopupOpened(false);
   };
   const onOpenPopupClick = (e) => {
     e.preventDefault();
