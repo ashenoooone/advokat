@@ -12,6 +12,18 @@ const BlogCard = ({ image, time, title, text, id }) => {
 			return str.length > 259 ? str.slice(0, 259) + '...' : str + '...';
 		}
 	};
+	const [isLike, setLike] = useState(false);
+	const handleLikeClick = () => {
+		setLike(true);
+	};
+	const handleDislikeClick = () => {
+		setLike(false);
+	};
+	/*
+	 useEffect(() => {
+	 	console.log(isLike); // проверка изменения isLike
+	 }, [isLike]);
+	*/
 
 	const [isOpen, setOpen] = useState(false);
 	const handleTogglePopup = e => {
@@ -28,11 +40,7 @@ const BlogCard = ({ image, time, title, text, id }) => {
 	const handleClosePopup = e => {
 		if (
 			e.target.closest('div').className ===
-				'card__buttos-container' + ' card__buttos-container__' + id ||
-			e.target.closest('div').className ===
-				'card__buttons' + ' card__buttons__' + id ||
-			e.target.closest('div').className ===
-				'card__button-box' + ' card__button-box__' + id
+			'card__button-box' + ' card__button-box__' + id
 		)
 			return;
 		if (
@@ -61,19 +69,32 @@ const BlogCard = ({ image, time, title, text, id }) => {
 				<a href='#' className='card__more'>
 					Подробнее
 				</a>
-				<div
-					className={`card__buttos-container card__buttos-container__${id}`}
-					onClick={handleTogglePopup}
-				>
-					<div className={`card__button-box ${id}`}>
-						<img src={like} alt='like' className='card__button' />
+				<div className={`card__buttos-container card__buttos-container__${id}`}>
+					<div
+						className={`card__button-box card__button-box__${id}`}
+						onClick={handleTogglePopup}
+					>
+						<img
+							src={like}
+							alt='like'
+							className='card__button'
+							onClick={handleLikeClick}
+						/>
 						<span className='card__number'>12</span>
 					</div>
-					<div className={`card__button-box card__button-box__${id}`}>
-						<img src={dislike} alt='dislike' className='card__button' />
+					<div
+						className={`card__button-box card__button-box__${id}`}
+						onClick={handleTogglePopup}
+					>
+						<img
+							src={dislike}
+							alt='dislike'
+							className='card__button'
+							onClick={handleDislikeClick}
+						/>
 						<span className='card__number'>1</span>
 					</div>
-					<ReactionPopup isOpen={isOpen} setOpen={setOpen} />
+					<ReactionPopup isOpen={isOpen} isLike={isLike} />
 				</div>
 			</div>
 		</div>
