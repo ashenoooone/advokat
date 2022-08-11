@@ -43,6 +43,9 @@ const BlogCard = ({ image, time, title, text, id }) => {
 
   useLayoutEffect(() => {
     const titleEl = titleRef.current;
+    if (titleEl.offsetHeight > 31) {
+      setMaxLines((maxLines) => maxLines - titleEl.offsetHeight / 31 + 1);
+    }
   }, [titleRef, text]);
 
   useEffect(() => {

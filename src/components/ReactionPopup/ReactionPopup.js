@@ -1,8 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './ReactionPopup.scss';
 
-const ReactionPopup = ({ isOpen, setOpen }) => {
+const ReactionPopup = ({ isOpen, isLike }) => {
+	const [email, setEmail] = useState('');
+	const handleSubmitReactionForm = e => {
+		e.preventDefault();
+		if (isLike) {
+			// отправить запрос на положительную реакцию
+		} else {
+			// отправить запрос на негативную реакцию
+		}
+	};
+	const handleEmailChange = e => setEmail(e.target.value);
 	return (
 		<AnimatePresence>
 			{isOpen && (
@@ -15,11 +25,13 @@ const ReactionPopup = ({ isOpen, setOpen }) => {
 				>
 					<div className='reaction-popup__container'>
 						<h3 className='consul-popup__title'>Поставить оценку</h3>
-						<form className='popup-form'>
+						<form className='popup-form' onSubmit={handleSubmitReactionForm}>
 							<input
 								type='email'
 								className='popup-form__input'
 								placeholder='Email'
+								value={email}
+								onChange={handleEmailChange}
 							/>
 							<button
 								className='button button_default'
