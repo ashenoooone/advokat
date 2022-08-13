@@ -50,7 +50,6 @@ const BlogCard = ({ image, time, title, text, id }) => {
 
   useEffect(() => {
     document.addEventListener('click', handleClosePopup);
-
     return () => {
       document.removeEventListener('click', handleClosePopup);
     };
