@@ -10,10 +10,21 @@ const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
 
 const BlogCard = ({ image, time, title, text, id }) => {
   const titleRef = useRef(null);
-
+  const [isLike, setLike] = useState(false);
+  const handleLikeClick = () => {
+    setLike(true);
+  };
+  const handleDislikeClick = () => {
+    setLike(false);
+  };
+  /*
+	 useEffect(() => {
+	 	console.log(isLike); // проверка изменения isLike
+	 }, [isLike]);
+	*/
   const [maxLines, setMaxLines] = useState(6);
   const [isOpen, setOpen] = useState(false);
-  const handleTogglePopup = (e) => {
+  const handleTogglePopup = e => {
     if (
       e.target.closest('div').className ===
         'card__buttos-container' + ' card__buttos-container__' + id ||
@@ -24,14 +35,10 @@ const BlogCard = ({ image, time, title, text, id }) => {
     )
       return setOpen(!isOpen);
   };
-  const handleClosePopup = (e) => {
+  const handleClosePopup = e => {
     if (
       e.target.closest('div').className ===
-        'card__buttos-container' + ' card__buttos-container__' + id ||
-      e.target.closest('div').className ===
-        'card__buttons' + ' card__buttons__' + id ||
-      e.target.closest('div').className ===
-        'card__button-box' + ' card__button-box__' + id
+      'card__button-box' + ' card__button-box__' + id
     )
       return;
     if (
@@ -44,7 +51,7 @@ const BlogCard = ({ image, time, title, text, id }) => {
   useLayoutEffect(() => {
     const titleEl = titleRef.current;
     if (titleEl.offsetHeight > 31) {
-      setMaxLines((maxLines) => maxLines - titleEl.offsetHeight / 31 + 1);
+      setMaxLines(maxLines => maxLines - titleEl.offsetHeight / 31 + 1);
     }
   }, [titleRef, text]);
 
@@ -77,19 +84,22 @@ const BlogCard = ({ image, time, title, text, id }) => {
         <a href='#' className='card__more'>
           Подробнее
         </a>
-        <div
-          className={`card__buttos-container card__buttos-container__${id}`}
-          onClick={handleTogglePopup}
-        >
-          <div className={`card__button-box ${id}`}>
+        <div className={`card__buttos-container card__buttos-container__${id}`}>
+          <div
+            className={`card__button-box card__button-box__${id}`}
+            onClick={handleTogglePopup}
+          >
             <img src={like} alt='like' className='card__button' />
             <span className='card__number'>12</span>
           </div>
-          <div className={`card__button-box card__button-box__${id}`}>
+          <div
+            className={`card__button-box card__button-box__${id}`}
+            onClick={handleTogglePopup}
+          >
             <img src={dislike} alt='dislike' className='card__button' />
             <span className='card__number'>1</span>
           </div>
-          <ReactionPopup isOpen={isOpen} setOpen={setOpen} />
+          <ReactionPopup isOpen={isOpen} isLike={isLike} />
         </div>
       </div>
     </div>
