@@ -1,179 +1,184 @@
 .main {
-	width: 100%;
+  width: 100%;
 
-	&__img {
-		width: 100%;
-		height: 100%;
-	}
+  &__img {
+    width: 100%;
+    height: 100%;
+  }
 
-	&__title {
-		font-family: 'Lora';
-		font-style: normal;
-		font-weight: 700;
-		font-size: 56px;
-		line-height: 72px;
-		color: #261600;
-		@media screen and (max-width: 1023px) {
-			font-size: 40px;
-			line-height: 51px;
-		}
-		@media screen and (max-width: 374px) {
-			font-size: 32px;
-			line-height: 41px;
-		}
-	}
+  &__title {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 72px;
+    color: #261600;
+    @media screen and (max-width: 1023px) {
+      font-size: 40px;
+      line-height: 51px;
+    }
+    @media screen and (max-width: 374px) {
+      font-size: 32px;
+      line-height: 41px;
+    }
+  }
 
-	&__container {
-		max-width: 1280px;
-		width: 100%;
-		margin: 0 auto;
-		padding: 0 60px;
-		@media screen and (max-width: 1023px) {
-			padding: 0 40px;
-		}
-		@media screen and (max-width: 374px) {
-			padding: 0 16px;
-		}
-	}
+  &__container {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 60px;
+    @media screen and (max-width: 1023px) {
+      padding: 0 40px;
+    }
+    @media screen and (max-width: 374px) {
+      padding: 0 16px;
+    }
+  }
 }
 
 .data {
-	font-family: 'SourceSansPro';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 18px;
-	line-height: 23px;
-	color: #b1a9a0;
-	margin: 24px 0 0;
+  font-family: 'SourceSansPro';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 23px;
+  color: #b1a9a0;
+  margin: 24px 0 0;
 }
 
 .text {
-	font-family: 'SourceSansPro';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 18px;
-	line-height: 150%;
-	color: #261600;
-	margin: 0;
-	@media screen and (max-width: 374px) {
-		font-size: 16px;
-		line-height: 150%;
-	}
+  font-family: 'SourceSansPro';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+  color: #261600;
+  margin: 0;
+  @media screen and (max-width: 374px) {
+    font-size: 16px;
+    line-height: 150%;
+  }
 }
 
 .text-container {
-	padding: 0 0 16px;
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
-	border-bottom: 1px solid #b1a9a0;
+  padding: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-bottom: 1px solid #b1a9a0;
 }
 
 .post-reaction {
-	padding: 16px 0 0;
-	display: flex;
-	max-width: 162px;
-	width: 100%;
-	gap: 40px;
-	margin: 0;
+  padding: 16px 0 0;
+  display: flex;
+  max-width: 162px;
+  width: 100%;
+  gap: 40px;
+  margin: 0;
 }
 
 .another-blog {
-	padding: 56px 0 46px;
+  padding: 56px 0 46px;
 
-	&__title {
-		font-family: 'Lora';
-		font-style: normal;
-		font-weight: 700;
-		font-size: 56px;
-		line-height: 72px;
-		color: #261600;
-		margin: 0 0 16px;
-		@media screen and (max-width: 1023px) {
-			font-size: 40px;
-			line-height: 51px;
-		}
-		@media screen and (max-width: 374px) {
-			font-size: 32px;
-			line-height: 41px;
-		}
-	}
+  &__title {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 72px;
+    color: #261600;
+    margin: 0 0 16px;
+    @media screen and (max-width: 1023px) {
+      font-size: 40px;
+      line-height: 51px;
+    }
+    @media screen and (max-width: 374px) {
+      font-size: 32px;
+      line-height: 41px;
+    }
+  }
 
-	&__container {
-		width: 100%;
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(288px, 1fr));
-		gap: 20px;
-	}
+  &__container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(288px, 1fr));
+    gap: 20px;
+    @media screen and (max-width: 1023px) {
+      div:nth-child(3) {
+        display: none;
+      }
+    }
+  }
 }
 
 .rating {
-	padding: 0 217px 48px;
-	margin: 0 auto;
-	@media screen and (max-width: 1279px) {
-		padding: 0 0 48px;
-	}
-	&__title {
-		font-family: 'Lora';
-		font-style: normal;
-		font-weight: 700;
-		font-size: 40px;
-		line-height: 51px;
-		color: #261600;
-		margin: 0 0 24px;
-		@media screen and (max-width: 1023px) {
-			font-size: 40px;
-			line-height: 51px;
-		}
-		@media screen and (max-width: 374px) {
-			font-size: 32px;
-			line-height: 41px;
-		}
-	}
+  padding: 0 217px 48px;
+  margin: 0 auto;
+  @media screen and (max-width: 1279px) {
+    padding: 0 0 48px;
+  }
+  &__title {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 51px;
+    color: #261600;
+    margin: 0 0 24px;
+    @media screen and (max-width: 1023px) {
+      font-size: 40px;
+      line-height: 51px;
+    }
+    @media screen and (max-width: 374px) {
+      font-size: 32px;
+      line-height: 41px;
+    }
+  }
 
-	&__comments {
-		display: flex;
-		flex-direction: column;
-		gap: 32px;
-	}
+  &__comments {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
 }
 
 .reviews-form {
-	padding: 0 108px 119px;
-	max-width: 1095px;
-	width: 100%;
-	margin: 0 auto;
-	@media screen and (max-width: 1279px) {
-		padding: 0 60px 112px;
-		margin: 0;
-	}
-	@media screen and (max-width: 1023px) {
-		padding: 0 0 80px;
-	}
-	&__container {
-		border: 1px solid #b1a9a0;
-		padding: 40px 109px;
-		@media screen and (max-width: 1279px) {
-			padding: 40px 77px;
-		}
-		@media screen and (max-width: 374px) {
-			padding: 24px 16px;
-		}
-	}
-	&__button {
-		outline: 0;
-		border: 0;
-		cursor: pointer;
-		transition: all 0.2s linear;
-		background: #cfac7d;
-		border-radius: 12px;
-		color: #ffffff;
-		padding: 15.5px 0;
-		font-family: 'SourceSansPro';
-		font-style: normal;
-		font-weight: 600;
-		font-size: 20px;
-		line-height: 25px;
-		color: #ffffff;
-	}
+  padding: 0 108px 119px;
+  max-width: 1095px;
+  width: 100%;
+  margin: 0 auto;
+  @media screen and (max-width: 1279px) {
+    padding: 0 60px 112px;
+    margin: 0;
+  }
+  @media screen and (max-width: 1023px) {
+    padding: 0 0 80px;
+  }
+  &__container {
+    border: 1px solid #b1a9a0;
+    padding: 40px 109px;
+    @media screen and (max-width: 1279px) {
+      padding: 40px 77px;
+    }
+    @media screen and (max-width: 374px) {
+      padding: 24px 16px;
+    }
+  }
+  &__button {
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    transition: all 0.2s linear;
+    background: #cfac7d;
+    border-radius: 12px;
+    color: #ffffff;
+    padding: 15.5px 0;
+    font-family: 'SourceSansPro';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+    color: #ffffff;
+  }
 }

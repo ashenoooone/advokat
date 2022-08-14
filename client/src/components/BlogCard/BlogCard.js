@@ -9,7 +9,15 @@ import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
 
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
 
-const BlogCard = ({ image, time, title, text, id, likes, dislikes }) => {
+const BlogCard = ({
+  image,
+  time,
+  title,
+  text,
+  id,
+  likes = [],
+  dislikes = [],
+}) => {
   const titleRef = useRef(null);
   const [isLike, setLike] = useState(false);
 
