@@ -112,37 +112,3 @@ const Header = () => {
 };
 
 export default Header;
-
-// !isBurger && (
-//   <motion.nav
-//     initial={{ opacity: 0 }}
-//     animate={{ opacity: 1 }}
-//     transition={{
-//       duration: 0.5,
-//     }}
-//     exit={{ opacity: 0 }}
-//     className={`${!isBurger ? 'header__nav-burger' : 'header__nav'}`}
-//   >
-//     <div className='header__navs'>
-//       <a
-//         href='#reviews'
-//         className={`${!isBurger ? 'header__nav-link' : 'header__link'}`}
-//       >
-//         Отзывы
-//       </a>
-//       <a
-//         href='#blog'
-//         className={`${!isBurger ? 'header__nav-link' : 'header__link'}`}
-//       >
-//         Блог
-//       </a>
-//       <span
-//         className={`${!isBurger ? 'header__nav-link' : 'header__link'}`}
-//         onClick={handleOpenClick}
-//       >
-//         Контакты
-//       </span>
-//       <ContactPopup isOpen={isOpen} setOpen={setOpen} />
-//     </div>
-//   </motion.nav>
-// );
