@@ -67,6 +67,7 @@ const ReactionPopup = ({ isOpen, isLike }) => {
         </motion.div>
       )}
       <ConfPopup
+        key={2}
         onClosePopupClick={onCloseConfPopupClick}
         isOpened={isPopupOpened}
       />

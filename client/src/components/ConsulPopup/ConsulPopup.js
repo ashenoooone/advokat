@@ -64,6 +64,7 @@ const ConsulPopup = ({ isOpened, onClosePopupClick }) => {
         )}
       </AnimatePresence>
       <ConfPopup
+        key={1}
         onClosePopupClick={onCloseConfPopupClick}
         isOpened={isPopupOpened}
       />

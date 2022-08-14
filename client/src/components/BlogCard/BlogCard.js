@@ -9,10 +9,10 @@ import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
 
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
 
-const BlogCard = ({ image, time, title, text, id }) => {
+const BlogCard = ({ image, time, title, text, id, likes, dislikes }) => {
   const titleRef = useRef(null);
   const [isLike, setLike] = useState(false);
-  
+
   const handleLikeClick = () => {
     setLike(true);
   };
@@ -26,7 +26,7 @@ const BlogCard = ({ image, time, title, text, id }) => {
 	*/
   const [maxLines, setMaxLines] = useState(6);
   const [isOpen, setOpen] = useState(false);
-  const handleTogglePopup = e => {
+  const handleTogglePopup = (e) => {
     if (
       e.target.closest('div').className ===
         'card__buttos-container' + ' card__buttos-container__' + id ||
@@ -37,7 +37,7 @@ const BlogCard = ({ image, time, title, text, id }) => {
     )
       return setOpen(!isOpen);
   };
-  const handleClosePopup = e => {
+  const handleClosePopup = (e) => {
     if (
       e.target.closest('div').className ===
       'card__button-box' + ' card__button-box__' + id
@@ -49,13 +49,13 @@ const BlogCard = ({ image, time, title, text, id }) => {
     )
       setOpen(false);
   };
-  const handleKeyPressClosePopup = e => {
+  const handleKeyPressClosePopup = (e) => {
     if (isOpen && e.key === 'Escape') setOpen(false);
   };
   useLayoutEffect(() => {
     const titleEl = titleRef.current;
     if (titleEl.offsetHeight > 31) {
-      setMaxLines(maxLines => maxLines - titleEl.offsetHeight / 31 + 1);
+      setMaxLines((maxLines) => maxLines - titleEl.offsetHeight / 31 + 1);
     }
   }, [titleRef, text]);
 
@@ -101,7 +101,7 @@ const BlogCard = ({ image, time, title, text, id }) => {
               className='card__button'
               onClick={handleLikeClick}
             />
-            <span className='card__number'>12</span>
+            <span className='card__number'>{likes.length}</span>
           </div>
           <div
             className={`card__button-box card__button-box__${id}`}
@@ -113,7 +113,7 @@ const BlogCard = ({ image, time, title, text, id }) => {
               className='card__button'
               onClick={handleDislikeClick}
             />
-            <span className='card__number'>1</span>
+            <span className='card__number'>{dislikes.length}</span>
           </div>
           <ReactionPopup isOpen={isOpen} isLike={isLike} />
         </div>
