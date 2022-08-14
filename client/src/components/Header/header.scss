@@ -3,6 +3,7 @@
   flex-direction: column;
   width: 100%;
   padding: 17px 0 20px;
+  height: 160px;
   position: sticky;
   background: white;
   top: 0;
@@ -83,14 +84,26 @@
     display: flex;
     gap: 60px;
     margin: 0 0 0 auto;
+    max-width: 1280px;
     &-burger {
-      position: absolute;
-      top: 100%;
-      z-index: 1;
       background: white;
       margin: 0 auto;
-      width: 97%;
+      display: flex;
+      gap: 60px;
+      width: 100%;
+      padding: 16px 60px;
       border-bottom: 1px solid #b1a9a0;
+      @media screen and (max-width: 1279px) {
+      padding: 16px 60px;
+    }
+    @media screen and (max-width: 764px) {
+      padding: 16px 40px;
+      gap: 40px;
+    }
+    @media screen and (max-width: 374px) {
+      padding: 16px;
+      gap: 20px;
+    }
     }
     &-link {
       font-family: 'SourceSansPro', 'Courier New', Courier, monospace;

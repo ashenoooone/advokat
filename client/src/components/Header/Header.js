@@ -49,76 +49,31 @@ const Header = () => {
             роман яковенко
           </h2>
         </div>
-        <AnimatePresence>
-          {!isBurgerActive ? (
-            <nav
-              className={`${!isBurger ? 'header__nav-burger' : 'header__nav'}`}
+        {!isBurgerActive && (
+          <nav
+            className={`${!isBurger ? 'header__nav-burger' : 'header__nav'}`}
+          >
+            <a
+              href='#reviews'
+              className={`${!isBurger ? 'header__nav-link' : 'header__link'}`}
             >
-              <a
-                href='#reviews'
-                className={`${!isBurger ? 'header__nav-link' : 'header__link'}`}
-              >
-                Отзывы
-              </a>
-              <a
-                href='#blog'
-                className={`${!isBurger ? 'header__nav-link' : 'header__link'}`}
-              >
-                Блог
-              </a>
-              <span
-                className={`${!isBurger ? 'header__nav-link' : 'header__link'}`}
-                onClick={handleOpenClick}
-              >
-                Контакты
-              </span>
-              <ContactPopup isOpen={isOpen} setOpen={setOpen} />
-            </nav>
-          ) : (
-            !isBurger && (
-              <motion.nav
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{
-                  duration: 0.5,
-                }}
-                exit={{ opacity: 0 }}
-                className={`${
-                  !isBurger ? 'header__nav-burger' : 'header__nav'
-                }`}
-              >
-                <div className='header__navs'>
-                  <a
-                    href='#reviews'
-                    className={`${
-                      !isBurger ? 'header__nav-link' : 'header__link'
-                    }`}
-                  >
-                    Отзывы
-                  </a>
-                  <a
-                    href='#blog'
-                    className={`${
-                      !isBurger ? 'header__nav-link' : 'header__link'
-                    }`}
-                  >
-                    Блог
-                  </a>
-                  <span
-                    className={`${
-                      !isBurger ? 'header__nav-link' : 'header__link'
-                    }`}
-                    onClick={handleOpenClick}
-                  >
-                    Контакты
-                  </span>
-                  <ContactPopup isOpen={isOpen} setOpen={setOpen} />
-                </div>
-              </motion.nav>
-            )
-          )}
-          {/* )} */}
-        </AnimatePresence>
+              Отзывы
+            </a>
+            <a
+              href='#blog'
+              className={`${!isBurger ? 'header__nav-link' : 'header__link'}`}
+            >
+              Блог
+            </a>
+            <span
+              className={`${!isBurger ? 'header__nav-link' : 'header__link'}`}
+              onClick={handleOpenClick}
+            >
+              Контакты
+            </span>
+            <ContactPopup isOpen={isOpen} setOpen={setOpen} />
+          </nav>
+        )}
         {isBurgerActive && (
           <img
             src={burger}
@@ -128,8 +83,66 @@ const Header = () => {
           />
         )}
       </div>
+      <AnimatePresence>
+        {!isBurger && (
+          <motion.nav
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              duration: 0.5,
+            }}
+            exit={{ opacity: 0 }}
+            className='header__nav-burger'
+          >
+            <a href='#reviews' className='header__link'>
+              Отзывы
+            </a>
+            <a href='#blog' className='header__link'>
+              Блог
+            </a>
+            <span className='header__link' onClick={handleOpenClick}>
+              Контакты
+            </span>
+            <ContactPopup isOpen={isOpen} setOpen={setOpen} />
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
 
 export default Header;
+
+// !isBurger && (
+//   <motion.nav
+//     initial={{ opacity: 0 }}
+//     animate={{ opacity: 1 }}
+//     transition={{
+//       duration: 0.5,
+//     }}
+//     exit={{ opacity: 0 }}
+//     className={`${!isBurger ? 'header__nav-burger' : 'header__nav'}`}
+//   >
+//     <div className='header__navs'>
+//       <a
+//         href='#reviews'
+//         className={`${!isBurger ? 'header__nav-link' : 'header__link'}`}
+//       >
+//         Отзывы
+//       </a>
+//       <a
+//         href='#blog'
+//         className={`${!isBurger ? 'header__nav-link' : 'header__link'}`}
+//       >
+//         Блог
+//       </a>
+//       <span
+//         className={`${!isBurger ? 'header__nav-link' : 'header__link'}`}
+//         onClick={handleOpenClick}
+//       >
+//         Контакты
+//       </span>
+//       <ContactPopup isOpen={isOpen} setOpen={setOpen} />
+//     </div>
+//   </motion.nav>
+// );
