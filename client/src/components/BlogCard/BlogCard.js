@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useLayoutEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import './BlogCard.scss';
 import like from '../../assets/like.svg';
 import dislike from '../../assets/dislike.svg';
@@ -47,7 +48,9 @@ const BlogCard = ({ image, time, title, text, id }) => {
     )
       setOpen(false);
   };
-
+  const handleKeyPressClosePopup = e => {
+    if (isOpen && e.key === 'Escape') setOpen(false);
+  };
   useLayoutEffect(() => {
     const titleEl = titleRef.current;
     if (titleEl.offsetHeight > 31) {
@@ -57,8 +60,10 @@ const BlogCard = ({ image, time, title, text, id }) => {
 
   useEffect(() => {
     document.addEventListener('click', handleClosePopup);
+    document.addEventListener('keydown', handleKeyPressClosePopup);
     return () => {
       document.removeEventListener('click', handleClosePopup);
+      document.removeEventListener('keydown', handleKeyPressClosePopup);
     };
   }, [isOpen]);
 
@@ -81,22 +86,32 @@ const BlogCard = ({ image, time, title, text, id }) => {
         />
       </div>
       <div className='card__buttons'>
-        <a href='#' className='card__more'>
+        <Link to={`/article/${id}`} className='card__more'>
           Подробнее
-        </a>
+        </Link>
         <div className={`card__buttos-container card__buttos-container__${id}`}>
           <div
             className={`card__button-box card__button-box__${id}`}
             onClick={handleTogglePopup}
           >
-            <img src={like} alt='like' className='card__button' />
+            <img
+              src={like}
+              alt='like'
+              className='card__button'
+              onClick={handleLikeClick}
+            />
             <span className='card__number'>12</span>
           </div>
           <div
             className={`card__button-box card__button-box__${id}`}
             onClick={handleTogglePopup}
           >
-            <img src={dislike} alt='dislike' className='card__button' />
+            <img
+              src={dislike}
+              alt='dislike'
+              className='card__button'
+              onClick={handleDislikeClick}
+            />
             <span className='card__number'>1</span>
           </div>
           <ReactionPopup isOpen={isOpen} isLike={isLike} />
