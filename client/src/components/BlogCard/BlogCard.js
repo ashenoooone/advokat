@@ -12,6 +12,7 @@ const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
 const BlogCard = ({ image, time, title, text, id }) => {
   const titleRef = useRef(null);
   const [isLike, setLike] = useState(false);
+  
   const handleLikeClick = () => {
     setLike(true);
   };
