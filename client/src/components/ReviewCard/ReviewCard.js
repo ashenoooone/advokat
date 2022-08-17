@@ -27,7 +27,7 @@ const ReviewCard = ({
         </div>
         <div className='review__rating'>
           {[...Array(5)].map((star, index) => {
-            if (index <= rating)
+            if (index < rating)
               return <span key={index} className='icon-star_active'></span>;
             else
               return <span key={index} className='icon-star_inactive'></span>;
