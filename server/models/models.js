@@ -21,4 +21,30 @@ const Review = sequelize.define('review', {
   },
 });
 
-module.exports = { Review };
+const BlogCards = sequelize.define('blogs', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  image: {
+    type: DataTypes.STRING,
+  },
+  time: {
+    type: DataTypes.STRING,
+  },
+  likes: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+  },
+  dislikes: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+  },
+  title: {
+    type: DataTypes.STRING,
+  },
+  text: {
+    type: DataTypes.TEXT,
+  },
+});
+
+module.exports = { Review, BlogCards };
