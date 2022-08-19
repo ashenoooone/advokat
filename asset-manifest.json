@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.c7e43b14.css",
-    "main.js": "./static/js/main.72adb320.js",
+    "main.js": "./static/js/main.adda2ad2.js",
     "static/media/Lora-SemiBold.svg": "./static/media/Lora-SemiBold.c305576b74aebe63d049.svg",
     "static/media/Lora-Medium.svg": "./static/media/Lora-Medium.46486ce61b7fca4267ff.svg",
     "static/media/Lora-Bold.svg": "./static/media/Lora-Bold.ed45416e0c8eab5bd153.svg",
@@ -46,10 +46,10 @@
     "index.html": "./index.html",
     "static/media/burger.svg": "./static/media/burger.a6fb5466b3f7f442635eea9bf0ed2502.svg",
     "main.c7e43b14.css.map": "./static/css/main.c7e43b14.css.map",
-    "main.72adb320.js.map": "./static/js/main.72adb320.js.map"
+    "main.adda2ad2.js.map": "./static/js/main.adda2ad2.js.map"
   },
   "entrypoints": [
     "static/css/main.c7e43b14.css",
-    "static/js/main.72adb320.js"
+    "static/js/main.adda2ad2.js"
   ]
 }
