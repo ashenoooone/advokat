@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.c7e43b14.css",
-    "main.js": "./static/js/main.adda2ad2.js",
+    "main.css": "./static/css/main.fba39ac7.css",
+    "main.js": "./static/js/main.5074afea.js",
     "static/media/Lora-SemiBold.svg": "./static/media/Lora-SemiBold.c305576b74aebe63d049.svg",
     "static/media/Lora-Medium.svg": "./static/media/Lora-Medium.46486ce61b7fca4267ff.svg",
     "static/media/Lora-Bold.svg": "./static/media/Lora-Bold.ed45416e0c8eab5bd153.svg",
@@ -45,11 +45,11 @@
     "static/media/like.svg": "./static/media/like.c07e76c4c33cfa62c9a815d798209245.svg",
     "index.html": "./index.html",
     "static/media/burger.svg": "./static/media/burger.a6fb5466b3f7f442635eea9bf0ed2502.svg",
-    "main.c7e43b14.css.map": "./static/css/main.c7e43b14.css.map",
-    "main.adda2ad2.js.map": "./static/js/main.adda2ad2.js.map"
+    "main.fba39ac7.css.map": "./static/css/main.fba39ac7.css.map",
+    "main.5074afea.js.map": "./static/js/main.5074afea.js.map"
   },
   "entrypoints": [
-    "static/css/main.c7e43b14.css",
-    "static/js/main.adda2ad2.js"
+    "static/css/main.fba39ac7.css",
+    "static/js/main.5074afea.js"
   ]
 }
