@@ -45,6 +45,9 @@ const BlogCards = sequelize.define('blogs', {
   text: {
     type: DataTypes.TEXT,
   },
+  comments: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+  },
 });
 
 module.exports = { Review, BlogCards };
