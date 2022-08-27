@@ -26,6 +26,23 @@ class DataController {
     return res.json(blog);
   }
 
+  async sendReaction(req, res, next) {
+    const { id } = req.params;
+    const { like, dislike } = req.body;
+    const blog = await BlogCards.findOne({ where: { id } });
+    if (like) {
+      blog.update({
+        ['likes']: [...blog.likes, like],
+      });
+    }
+    if (dislike) {
+      blog.update({
+        ['dislikes']: [...blog.dislikes, dislike],
+      });
+    }
+    return res.json(blog);
+  }
+
   async sendComment(req, res, next) {
     const { comment } = req.body;
     const { id } = req.params;
