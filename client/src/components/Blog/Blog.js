@@ -11,19 +11,19 @@ const Blog = () => {
   const [blogPerPage, setBlogPerPage] = useState(3);
   const [cards, setCards] = useState([]);
   const isDesktopResolution = useMatchMedia('(max-width:1050px)', true);
-  const getCards = useCallback(() => {
-    axios
-      .get('http://localhost:7000/api/blogs')
-      .then(res => setCards(res.data));
-  }, [cards]);
+  // const getCards = useCallback(() => {
+  //   axios
+  //     .get('http://localhost:7000/api/blogs')
+  //     .then(res => setCards(res.data));
+  // }, [cards]);
 
   useEffect(() => {
     !isDesktopResolution ? setBlogPerPage(3) : setBlogPerPage(2);
   }, [isDesktopResolution]);
 
-  useEffect(() => {
-    getCards();
-  }, []);
+  // useEffect(() => {
+  //   getCards();
+  // }, []);
 
   const lastIndex = currentPage * blogPerPage;
   const firstIndex = lastIndex - blogPerPage;
@@ -33,7 +33,7 @@ const Blog = () => {
       <h2 className='title blog__title'>Блог</h2>
       <div className='blog__container'>
         {currentBlogs &&
-          currentBlogs.map(card => <BlogCard key={card.id} {...card} />)}
+          currentBlogs.map((card) => <BlogCard key={card.id} {...card} />)}
       </div>
       <Pagination
         blogPerPage={blogPerPage}

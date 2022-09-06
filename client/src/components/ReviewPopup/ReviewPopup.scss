@@ -33,8 +33,11 @@
     display: flex;
     gap: 21px;
     .popup-form__input {
-      width: 50%;
+      width: 100%;
     }
+  }
+  .popup-form__input-error {
+    min-height: 15px;
   }
   .popup-form__input {
     font-style: normal;
@@ -59,9 +62,6 @@
     }
     &__inputs {
       flex-direction: column;
-      .popup-form__input {
-        width: 100%;
-      }
     }
   }
 }
