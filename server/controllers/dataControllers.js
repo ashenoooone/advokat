@@ -3,8 +3,48 @@ const { Review, BlogCards } = require('../models/models');
 class DataController {
   async getReviews(req, res, next) {
     const { limit } = req.query;
-    const reviews = await Review.findAll({ limit: limit });
+    let reviews;
+    if (limit) {
+      reviews = await Review.findAll({
+        limit: limit,
+        where: {
+          status: true,
+        },
+      });
+    } else {
+      reviews = await Review.findAll({
+        where: {
+          status: true,
+        },
+      });
+    }
     return res.json(reviews);
+  }
+
+  async sendReview(req, res, next) {
+    const { rating, name, text, date, status, email } = req.body;
+    const newReview = await Review.create({
+      rating,
+      name,
+      text,
+      date,
+      status: false,
+      email,
+    });
+    return res.json(newReview);
+  }
+
+  async updateReviewStatus(req, res, next) {
+    const { id } = req.body;
+    console.log(id);
+    await Review.update({ status: true }, { where: { id } });
+    return res.status(200);
+  }
+
+  async deleteReview(req, res, next) {
+    const { id } = req.body;
+    const review = await Review.destroy({ where: { id } });
+    return res.status(200);
   }
 
   async getBlogCards(req, res, next) {

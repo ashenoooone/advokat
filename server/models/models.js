@@ -19,6 +19,12 @@ const Review = sequelize.define('review', {
   date: {
     type: DataTypes.STRING,
   },
+  status: {
+    type: DataTypes.BOOLEAN,
+  },
+  email: {
+    type: DataTypes.STRING,
+  },
 });
 
 const BlogCards = sequelize.define('blogs', {
@@ -48,6 +54,9 @@ const BlogCards = sequelize.define('blogs', {
   comments: {
     type: DataTypes.ARRAY(DataTypes.STRING),
   },
+  status: {
+    type: DataTypes.BOOLEAN,
+  },
 });
-
+// sequelize.sync({ force: true });
 module.exports = { Review, BlogCards };
