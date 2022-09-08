@@ -38,13 +38,13 @@ class DataController {
     const { id } = req.body;
     console.log(id);
     await Review.update({ status: true }, { where: { id } });
-    return res.status(200);
+    return res.status(200).json({ status: 'ok' });
   }
 
   async deleteReview(req, res, next) {
     const { id } = req.body;
     const review = await Review.destroy({ where: { id } });
-    return res.status(200);
+    return res.status(200).json({ status: 'ok' });
   }
 
   async getBlogCards(req, res, next) {
