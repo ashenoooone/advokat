@@ -54,9 +54,6 @@ const BlogCards = sequelize.define('blogs', {
   comments: {
     type: DataTypes.ARRAY(DataTypes.STRING),
   },
-  status: {
-    type: DataTypes.BOOLEAN,
-  },
 });
 // sequelize.sync({ force: true });
 module.exports = { Review, BlogCards };
