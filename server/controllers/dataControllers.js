@@ -106,7 +106,24 @@ class DataController {
         status: 200,
         token: 'welcome23425dfHHgDFJAFadvokat3756GFGF^%Rfytetoyour panel',
       });
-    return res.json({ status: 301, message: 'premission deny' });
+    return res.json({ message: 'premission deny' });
+  }
+  async createPost(req, res, next) {
+    const { image, title, text } = req.body;
+    const today = new Date();
+    const todayDate = `${day > 9 ? day : '0' + day}.${
+      month > 9 ? month : '0' + month
+    }.${year}`;
+    const post = await BlogCards.create({
+      image,
+      title,
+      text,
+      time: todayDate,
+      likes: [],
+      dislikes: [],
+      comments: [],
+    });
+    return res.json(post);
   }
 }
 

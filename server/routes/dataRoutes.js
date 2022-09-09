@@ -11,5 +11,6 @@ router.get('/another-blog', DataController.getAnotherBlog);
 router.post('/article/:id', DataController.sendComment);
 router.get('/article/:id', DataController.getCardsById);
 router.post('/login', DataController.auth);
+router.post('/blogs', DataController.createPost);
 
 module.exports = router;
