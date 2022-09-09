@@ -22,12 +22,19 @@ class DataController {
   }
 
   async sendReview(req, res, next) {
-    const { rating, name, text, date, status, email } = req.body;
+    const { rating, name, text, status, email } = req.body;
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const todayDate = `${day > 9 ? day : '0' + day}.${
+      month > 9 ? month : '0' + month
+    }.${year}`;
     const newReview = await Review.create({
       rating,
       name,
       text,
-      date,
+      date: todayDate,
       status: false,
       email,
     });

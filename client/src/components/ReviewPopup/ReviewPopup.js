@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import close from '../../assets/close-cross.svg';
 import './ReviewPopup.scss';
 import { useState } from 'react';
+import axios from 'axios';
 
 const ReviewPopup = ({ isOpened, onClosePopupClick }) => {
   const [rating, setRating] = useState(0);
@@ -34,6 +35,18 @@ const ReviewPopup = ({ isOpened, onClosePopupClick }) => {
 
   const onSubmitForm = (e) => {
     e.preventDefault();
+    if (
+      nameError.length === 0 &&
+      emailError.length === 0 &&
+      reviewError.length === 0
+    ) {
+      axios.post('http://134.0.115.164:7000/api/reviews', {
+        name: nameText,
+        email: emailText,
+        text: reviewText,
+        rating,
+      });
+    }
   };
 
   const onNameInput = (e) => {
@@ -44,7 +57,11 @@ const ReviewPopup = ({ isOpened, onClosePopupClick }) => {
   };
   const onEmailInput = (e) => {
     setEmailText(e.target.value);
-    if (!e.target.value.match(/^.{2,}\@.{2,}\..{2,}/g))
+    if (
+      !e.target.value.match(
+        /^[A-Za-z0-9]{2,}@.[A-Za-z0-9]{1,}\..[A-Za-z0-9]{1,}$/g
+      )
+    )
       setEmailError('Введите корректный адресс электронной почты.');
     else setEmailError('');
   };
@@ -76,7 +93,7 @@ const ReviewPopup = ({ isOpened, onClosePopupClick }) => {
               className='popup__close-button'
             />
             <h3 className='review-popup__title'>Оставить отзыв</h3>
-            <form className='popup-form'>
+            <form className='popup-form' onSubmit={onSubmitForm}>
               <div className='review-popup__inputs'>
                 <div className='popup-form__input-container'>
                   <input
