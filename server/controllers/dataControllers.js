@@ -99,6 +99,15 @@ class DataController {
     });
     return res.json(blog);
   }
+  async auth(req, res, next) {
+    const { login, password } = req.body;
+    if (login === 'root' && password === 'LVg=F#kN|U7n')
+      return res.json({
+        status: 200,
+        token: 'welcome23425dfHHgDFJAFadvokat3756GFGF^%Rfytetoyour panel',
+      });
+    return res.json({ status: 301, message: 'premission deny' });
+  }
 }
 
 module.exports = new DataController();
