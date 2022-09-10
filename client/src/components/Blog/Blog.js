@@ -13,7 +13,7 @@ const Blog = () => {
   const isDesktopResolution = useMatchMedia('(max-width:1050px)', true);
   const getCards = useCallback(() => {
     axios
-      .get('http://http://134.0.115.164:7000/api/blogs', {
+      .get('http://134.0.115.164:7000/api/blogs', {
         headers: {
           'Access-Control-Allow-Origin': '*',
         },
