@@ -5,7 +5,7 @@ import './ReviewPopup.scss';
 import { useState } from 'react';
 import axios from 'axios';
 
-const ReviewPopup = ({ isOpened, onClosePopupClick }) => {
+const ReviewPopup = ({ isOpened, onClosePopupClick, setIsPopupOpened }) => {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [nameError, setNameError] = useState('');
@@ -33,7 +33,7 @@ const ReviewPopup = ({ isOpened, onClosePopupClick }) => {
     });
   }, [hoverRating, rating]);
 
-  const onSubmitForm = (e) => {
+  const onSubmitForm = e => {
     e.preventDefault();
     if (
       nameError.length === 0 &&
@@ -41,21 +41,29 @@ const ReviewPopup = ({ isOpened, onClosePopupClick }) => {
       reviewError.length === 0
     ) {
       axios.post('http://134.0.115.164:7000/api/reviews', {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
         name: nameText,
         email: emailText,
         text: reviewText,
         rating,
       });
+      setNameText('');
+      setEmailText('');
+      setReviewText('');
+      setRating(0);
+      setIsPopupOpened(false);
     }
   };
 
-  const onNameInput = (e) => {
+  const onNameInput = e => {
     setNameText(e.target.value);
     if (!e.target.value.match(/.{2,}/g))
       setNameError('Минимальная длина имени 2 символа.');
     else setNameError('');
   };
-  const onEmailInput = (e) => {
+  const onEmailInput = e => {
     setEmailText(e.target.value);
     if (
       !e.target.value.match(
@@ -65,7 +73,7 @@ const ReviewPopup = ({ isOpened, onClosePopupClick }) => {
       setEmailError('Введите корректный адресс электронной почты.');
     else setEmailError('');
   };
-  const onReviewInput = (e) => {
+  const onReviewInput = e => {
     setReviewText(e.target.value);
     if (!e.target.value.match(/.{10,}/g))
       setReviewError('Минимальная длина отзыва 10 символа.');

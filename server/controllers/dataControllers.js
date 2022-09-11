@@ -1,5 +1,15 @@
 const ApiError = require('../error/ApiError');
 const { Review, BlogCards } = require('../models/models');
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'romanyakovenko31@gmail.com',
+    pass: '2H!P!sI9',
+  },
+});
+
 class DataController {
   async getReviews(req, res, next) {
     const { limit } = req.query;
@@ -18,6 +28,15 @@ class DataController {
         },
       });
     }
+    return res.json(reviews);
+  }
+
+  async getNotConfirmedReviews(req, res, next) {
+    const reviews = await Review.findAll({
+      where: {
+        status: false,
+      },
+    });
     return res.json(reviews);
   }
 
