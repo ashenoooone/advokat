@@ -56,5 +56,5 @@ const BlogCards = sequelize.define('blogs', {
   },
 });
 
-sequelize.sync({ force: true });
+//sequelize.sync({ force: true });
 module.exports = { Review, BlogCards };
