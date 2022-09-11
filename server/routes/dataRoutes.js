@@ -12,5 +12,6 @@ router.post('/article/:id', DataController.sendComment);
 router.get('/article/:id', DataController.getCardsById);
 router.post('/login', DataController.auth);
 router.post('/blogs', DataController.createPost);
+router.post('/consultation', DataController.consultation);
 
 module.exports = router;

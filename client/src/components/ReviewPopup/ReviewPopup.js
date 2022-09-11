@@ -51,7 +51,7 @@ const ReviewPopup = ({ isOpened, onClosePopupClick }) => {
 
   const onNameInput = (e) => {
     setNameText(e.target.value);
-    if (!e.target.value.match(/.{2,}/g))
+    if (!e.target.value.match(/(?=\w{2,}).{2,}/g))
       setNameError('Минимальная длина имени 2 символа.');
     else setNameError('');
   };
