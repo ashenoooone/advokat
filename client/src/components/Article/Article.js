@@ -19,7 +19,20 @@ const Article = () => {
   const handleTogglePopup = () => {
     setOpen(!isOpen);
   };
-  //
+  const [blogData, setBlogData] = useState({});
+  const getInfo = useCallback(async () => {
+    const response = await axios.get(
+      `http://134.0.115.164:7000/api/article/${id}`,
+      {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
+    console.log(response);
+    setBlogData(response.data);
+    setText(response.data.text);
+  }, []);
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
   const [email, setEmail] = useState('');
@@ -82,17 +95,18 @@ const Article = () => {
     if (response) setComments(response.data.anotherBlogs);
   }, []);
   useEffect(() => {
+    getInfo();
     getComents();
     getAnotherBlog();
   }, []);
   return (
     <main className='main' key={id}>
       <div className='main__container'>
-        <img src={rim} alt='main img' className='main__img' />
-        <p className='data'>23.05.2021</p>
-        <h1 className='main__title'>Римское право в законодательстве</h1>
+        <img src={blogData?.image} alt='main img' className='main__img' />
+        <p className='data'>{blogData?.time}</p>
+        <h1 className='main__title'>{blogData?.title}</h1>
         <div className='text-container'>
-          <pre className='text'>{text}</pre>
+          <pre className='text'>{blogData?.text}</pre>
         </div>
         <div
           className={`card__buttos-container post-reaction`}
@@ -100,11 +114,11 @@ const Article = () => {
         >
           <div className={`card__button-box`}>
             <img src={like} alt='like' className='card__button' />
-            <span className='card__number'>12</span>
+            <span className='card__number'>{blogData?.likes.length}</span>
           </div>
           <div className={`card__button-box`}>
             <img src={dislike} alt='dislike' className='card__button' />
-            <span className='card__number'>1</span>
+            <span className='card__number'>{blogData?.dislikes.length}</span>
           </div>
           <ReactionPopup isOpen={isOpen} setOpen={setOpen} />
         </div>

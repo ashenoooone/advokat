@@ -64,6 +64,15 @@ class DataController {
     return res.json(reviews);
   }
 
+  async getNotConfirmedReviews(req, res, next) {
+    const reviews = await Review.findAll({
+      where: {
+        status: false,
+      },
+    });
+    return res.json(reviews);
+  }
+
   async sendReview(req, res, next) {
     const { rating, name, text, status, email } = req.body;
     const today = new Date();

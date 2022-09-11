@@ -10,7 +10,7 @@ const ReviewsContainer = () => {
     setIsPopupOpened(true);
   };
 
-  const onClosePopupClick = (e) => {
+  const onClosePopupClick = e => {
     const classes = e.target.classList;
     if (classes.contains('popup') || classes.contains('popup__close-button'))
       setIsPopupOpened(false);
@@ -23,7 +23,8 @@ const ReviewsContainer = () => {
           'Access-Control-Allow-Origin': '*',
         },
       })
-      .then((res) => {
+      .then(res => {
+        console.log(res);
         setReviews(res.data);
       });
   }, []);
@@ -34,6 +35,7 @@ const ReviewsContainer = () => {
       onOpenPopupClick={onOpenPopupClick}
       onClosePopupClick={onClosePopupClick}
       isPopupOpened={isPopupOpened}
+      setIsPopupOpened={setIsPopupOpened}
     />
   );
 };

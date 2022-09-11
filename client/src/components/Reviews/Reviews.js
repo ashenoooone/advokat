@@ -10,6 +10,7 @@ const Reviews = ({
   onOpenPopupClick,
   onClosePopupClick,
   isPopupOpened,
+  setIsPopupOpened,
 }) => {
   const [currentReview, setCurrentReview] = useState(0);
   const [carouselWidth, setCarouselWidth] = useState(1280);
@@ -18,12 +19,11 @@ const Reviews = ({
 
   const onChangeReviewsClick = () => {
     if (currentReview !== reviews.length - 1)
-      setCurrentReview((currentReview) => currentReview + 1);
+      setCurrentReview(currentReview => currentReview + 1);
   };
 
   const onChangeReviewsBackwardClick = () => {
-    if (currentReview > 0)
-      setCurrentReview((currentReview) => currentReview - 1);
+    if (currentReview > 0) setCurrentReview(currentReview => currentReview - 1);
   };
 
   const onWindowResize = () => {
@@ -93,6 +93,7 @@ const Reviews = ({
       </div>
       <ReviewPopup
         isOpened={isPopupOpened}
+        setIsPopupOpened={setIsPopupOpened}
         onClosePopupClick={onClosePopupClick}
       />
     </section>

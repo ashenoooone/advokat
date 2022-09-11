@@ -4,6 +4,7 @@ const DataController = require('../controllers/dataControllers');
 // запросы
 router.get('/blogs', DataController.getBlogCards);
 router.get('/reviews', DataController.getReviews);
+router.get('/not-confirmed-reviews', DataController.getNotConfirmedReviews);
 router.post('/reviews', DataController.sendReview);
 router.patch('/reviews', DataController.updateReviewStatus);
 router.delete('/reviews', DataController.deleteReview);
