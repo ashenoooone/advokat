@@ -17,6 +17,7 @@ const BlogCard = ({
   id,
   likes = [],
   dislikes = [],
+  setCards,
 }) => {
   const titleRef = useRef(null);
   const [isLike, setLike] = useState(false);
@@ -27,14 +28,9 @@ const BlogCard = ({
   const handleDislikeClick = () => {
     setLike(false);
   };
-  /*
-	 useEffect(() => {
-	 	console.log(isLike); // проверка изменения isLike
-	 }, [isLike]);
-	*/
   const [maxLines, setMaxLines] = useState(6);
   const [isOpen, setOpen] = useState(false);
-  const handleTogglePopup = (e) => {
+  const handleTogglePopup = e => {
     if (
       e.target.closest('div').className ===
         'card__buttos-container' + ' card__buttos-container__' + id ||
@@ -45,7 +41,7 @@ const BlogCard = ({
     )
       return setOpen(!isOpen);
   };
-  const handleClosePopup = (e) => {
+  const handleClosePopup = e => {
     if (
       e.target.closest('div').className ===
       'card__button-box' + ' card__button-box__' + id
@@ -57,13 +53,13 @@ const BlogCard = ({
     )
       setOpen(false);
   };
-  const handleKeyPressClosePopup = (e) => {
+  const handleKeyPressClosePopup = e => {
     if (isOpen && e.key === 'Escape') setOpen(false);
   };
   useLayoutEffect(() => {
     const titleEl = titleRef.current;
     if (titleEl.offsetHeight > 31) {
-      setMaxLines((maxLines) => maxLines - titleEl.offsetHeight / 31 + 1);
+      setMaxLines(maxLines => maxLines - titleEl.offsetHeight / 31 + 1);
     }
   }, [titleRef, text]);
 
@@ -123,7 +119,12 @@ const BlogCard = ({
             />
             <span className='card__number'>{dislikes.length}</span>
           </div>
-          <ReactionPopup isOpen={isOpen} isLike={isLike} />
+          <ReactionPopup
+            isOpen={isOpen}
+            isLike={isLike}
+            id={id}
+            setCards={setCards}
+          />
         </div>
       </div>
     </div>

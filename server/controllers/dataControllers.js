@@ -126,8 +126,7 @@ class DataController {
   }
 
   async sendReaction(req, res, next) {
-    const { id } = req.params;
-    const { like, dislike } = req.body;
+    const { like, dislike, id } = req.body;
     const blog = await BlogCards.findOne({ where: { id } });
     if (like) {
       blog.update({
@@ -160,8 +159,11 @@ class DataController {
       });
     return res.json({ message: 'premission deny' });
   }
+
   async createPost(req, res, next) {
-    const { image, title, text } = req.body;
+    const image = req.file.image;
+    image.mv('./uploads/' + avatar.name);
+    const { title, text } = req.body;
     const today = new Date();
     const day = today.getDate();
     const month = today.getMonth() + 1;

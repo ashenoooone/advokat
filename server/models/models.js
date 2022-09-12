@@ -55,10 +55,6 @@ const BlogCards = sequelize.define('blogs', {
     type: DataTypes.ARRAY(DataTypes.STRING),
   },
 });
-<<<<<<< HEAD
-sequelize.sync({ force: true });
-=======
 
 //sequelize.sync({ force: true });
->>>>>>> 9a6d22f152e83ac49444d02c301fcc5a0f0146a3
 module.exports = { Review, BlogCards };

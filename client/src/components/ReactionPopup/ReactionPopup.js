@@ -1,31 +1,67 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './ReactionPopup.scss';
 import ConfPopup from '../ConfPopup/ConfPopup';
+import axios from 'axios';
 
-const ReactionPopup = ({ isOpen, isLike }) => {
+const ReactionPopup = ({ isOpen, isLike, id, setCards }) => {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
-  const onCloseConfPopupClick = (e) => {
+  const [email, setEmail] = useState('');
+  const sendLikeReaction = useCallback(async () => {
+    const response = await axios.post(
+      `http://134.0.115.164:7000/api/review-card/${id}`,
+      {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+        like: email,
+      }
+    );
+    setCards(state => {
+      const updateCard = state.find(card => card.id === id);
+      updateCard.likes.push(email);
+      const cards = state.filter(card => card.id !== id);
+      return [...cards, updateCard].sort((a, b) => a.id - b.id);
+    });
+  }, [email, id]);
+  const sendDislikeReaction = useCallback(async () => {
+    const response = await axios.post(
+      `http://134.0.115.164:7000/api/review-card/${id}`,
+      {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+        dislike: email,
+      }
+    );
+    setCards(state => {
+      const updateCard = state.find(card => card.id === id);
+      updateCard.dislikes.push(email);
+      const cards = state.filter(card => card.id !== id);
+      return [...cards, updateCard].sort((a, b) => a.id - b.id);
+    });
+  }, [email, id]);
+  const onCloseConfPopupClick = e => {
     e.preventDefault();
     const classes = e.target.classList;
     e.stopPropagation();
     if (classes.contains('popup') || classes.contains('popup__close-button'))
       setIsPopupOpened(false);
   };
-  const onOpenPopupClick = (e) => {
+  const onOpenPopupClick = e => {
     e.preventDefault();
     setIsPopupOpened(true);
   };
-  const [email, setEmail] = useState('');
-  const handleSubmitReactionForm = (e) => {
+  const handleSubmitReactionForm = e => {
     e.preventDefault();
     if (isLike) {
-      // отправить запрос на положительную реакцию
+      sendLikeReaction();
     } else {
-      // отправить запрос на негативную реакцию
+      sendDislikeReaction();
     }
+    setEmail('');
   };
-  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handleEmailChange = e => setEmail(e.target.value);
   return (
     <AnimatePresence>
       {isOpen && (

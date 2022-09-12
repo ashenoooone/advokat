@@ -37,7 +37,9 @@ const Blog = () => {
       <h2 className='title blog__title'>Блог</h2>
       <div className='blog__container'>
         {currentBlogs &&
-          currentBlogs.map(card => <BlogCard key={card.id} {...card} />)}
+          currentBlogs.map(card => (
+            <BlogCard key={card.id} {...card} setCards={setCards} />
+          ))}
       </div>
       <Pagination
         blogPerPage={blogPerPage}
