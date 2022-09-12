@@ -1,5 +1,5 @@
 const ApiError = require('../error/ApiError');
-const { Review, BlogCards } = require('../models/models');
+const { Review, BlogCards, Comments } = require('../models/models');
 const { google } = require('googleapis');
 const nodemailer = require('nodemailer');
 const config = require('./nodemailer/config.js');
@@ -95,7 +95,6 @@ class DataController {
 
   async updateReviewStatus(req, res, next) {
     const { id } = req.body;
-    console.log(id);
     await Review.update({ status: true }, { where: { id } });
     return res.status(200).json({ status: 'ok' });
   }
@@ -144,10 +143,7 @@ class DataController {
   async sendComment(req, res, next) {
     const { comment } = req.body;
     const { id } = req.params;
-    const blog = await BlogCards.findOne({ where: { id } });
-    blog.update({
-      ['comments']: [...blog.comments, comment],
-    });
+
     return res.json(blog);
   }
   async auth(req, res, next) {
@@ -178,7 +174,6 @@ class DataController {
       time: todayDate,
       likes: [],
       dislikes: [],
-      comments: [],
     });
     return res.json(post);
   }

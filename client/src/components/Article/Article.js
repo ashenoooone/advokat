@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import './Article.scss';
 import ReactionPopup from '../ReactionPopup/ReactionPopup';
-import rim from '../../assets/rim.png';
 import like from '../../assets/like.svg';
 import dislike from '../../assets/dislike.svg';
-import posts from '../../assets/image.png';
 import BlogCard from '../BlogCard/BlogCard';
 import Comment from '../Comment/Comment';
 import { useParams } from 'react-router-dom';
@@ -15,7 +13,6 @@ import { useCallback } from 'react';
 const Article = () => {
   const { id } = useParams();
   const [isOpen, setOpen] = useState(false);
-  const [text, setText] = useState('');
   const handleTogglePopup = () => {
     setOpen(!isOpen);
   };
@@ -29,9 +26,11 @@ const Article = () => {
         },
       }
     );
-    console.log(response);
     setBlogData(response.data);
-    setText(response.data.text);
+    const articleComments = response.data.comments.map(comm =>
+      JSON.parse(comm)
+    );
+    setComments(articleComments);
   }, []);
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
@@ -114,11 +113,15 @@ const Article = () => {
         >
           <div className={`card__button-box`}>
             <img src={like} alt='like' className='card__button' />
-            <span className='card__number'>{blogData?.likes.length}</span>
+            <span className='card__number'>
+              {blogData.likes ? blogData.likes.length : 0}
+            </span>
           </div>
           <div className={`card__button-box`}>
             <img src={dislike} alt='dislike' className='card__button' />
-            <span className='card__number'>{blogData?.dislikes.length}</span>
+            <span className='card__number'>
+              {blogData.dislikes ? blogData.dislikes.length : 0}
+            </span>
           </div>
           <ReactionPopup isOpen={isOpen} setOpen={setOpen} />
         </div>
@@ -133,8 +136,8 @@ const Article = () => {
         <div className='rating'>
           <h2 className='rating__title'>Комментарии</h2>
           <div className='rating__comments'>
-            {comments.map(comment => (
-              <Comment key={'comment/' + comment.id} {...comment} />
+            {comments.map(com => (
+              <Comment key={'comment/' + com.id} {...com} />
             ))}
           </div>
         </div>

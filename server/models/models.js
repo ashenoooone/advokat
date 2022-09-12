@@ -51,10 +51,30 @@ const BlogCards = sequelize.define('blogs', {
   text: {
     type: DataTypes.TEXT,
   },
-  comments: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
+});
+
+const Comments = sequelize.define('comments', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  text: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  data: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
 });
+
+Comments.belongsTo(BlogCards);
+BlogCards.hasMany(Comments);
 
 //sequelize.sync({ force: true });
 module.exports = { Review, BlogCards };
