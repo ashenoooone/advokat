@@ -76,5 +76,5 @@ const Comments = sequelize.define('comments', {
 Comments.belongsTo(BlogCards);
 BlogCards.hasMany(Comments);
 
-//sequelize.sync({ force: true });
-module.exports = { Review, BlogCards };
+// sequelize.sync({ force: true });
+module.exports = { Review, BlogCards, Comments };

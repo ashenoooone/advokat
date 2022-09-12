@@ -26,7 +26,6 @@ let transporter = nodemailer.createTransport({
 class DataController {
   async consultation(req, res, next) {
     const { email, name } = req.body;
-    console.log(email, name);
     if (email && name) {
       let mailOptions = {
         from: 'uvedomitel1@gmail.com',
@@ -141,10 +140,9 @@ class DataController {
   }
 
   async sendComment(req, res, next) {
-    const { comment } = req.body;
-    const { id } = req.params;
-
-    return res.json(blog);
+    const { name, text, data, blogId } = req.body;
+    const comment = await Comments.create({ name, text, data, blogId });
+    return res.json(comment);
   }
   async auth(req, res, next) {
     const { login, password } = req.body;
@@ -157,8 +155,8 @@ class DataController {
   }
 
   async createPost(req, res, next) {
-    const image = req.file.image;
-    image.mv('./uploads/' + avatar.name);
+    const image = req.file?.image;
+    if (image) image.mv('./uploads/' + avatar.name);
     const { title, text } = req.body;
     const today = new Date();
     const day = today.getDate();
