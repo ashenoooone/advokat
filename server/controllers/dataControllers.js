@@ -144,6 +144,13 @@ class DataController {
     const comment = await Comments.create({ name, text, data, blogId });
     return res.json(comment);
   }
+
+  async getCommentsById(req, res) {
+    const { id } = req.body;
+    const comment = await Comments.findOne({ where: { id } });
+    return res.json(comment);
+  }
+
   async auth(req, res, next) {
     const { login, password } = req.body;
     if (login === 'root' && password === 'LVg=F#kN|U7n')
