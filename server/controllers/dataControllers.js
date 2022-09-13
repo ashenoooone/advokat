@@ -8,6 +8,17 @@ const OAuth2_client = new OAuth2(config.clientId, config.clientSecret);
 OAuth2_client.setCredentials({ refresh_token: config.refreshToken });
 const accesToken = OAuth2_client.getAccessToken();
 
+const getTodayDate = () => {
+  const today = new Date();
+  const day = today.getDate();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  const todayDate = `${day > 9 ? day : '0' + day}.${
+    month > 9 ? month : '0' + month
+  }.${year}`;
+  return todayDate;
+};
+
 let transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -74,18 +85,11 @@ class DataController {
 
   async sendReview(req, res, next) {
     const { rating, name, text, status, email } = req.body;
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.getMonth() + 1;
-    const year = today.getFullYear();
-    const todayDate = `${day > 9 ? day : '0' + day}.${
-      month > 9 ? month : '0' + month
-    }.${year}`;
     const newReview = await Review.create({
       rating,
       name,
       text,
-      date: todayDate,
+      date: getTodayDate(),
       status: false,
       email,
     });
@@ -124,7 +128,8 @@ class DataController {
   }
 
   async sendReaction(req, res, next) {
-    const { like, dislike, id } = req.body;
+    const { id } = req.params;
+    const { like, dislike } = req.body;
     const blog = await BlogCards.findOne({ where: { id } });
     if (like) {
       blog.update({
@@ -140,14 +145,20 @@ class DataController {
   }
 
   async sendComment(req, res, next) {
-    const { name, text, data, blogId } = req.body;
-    const comment = await Comments.create({ name, text, data, blogId });
+    const { name, text, email, blogId } = req.body;
+    const comment = await Comments.create({
+      name,
+      text,
+      email,
+      data: getTodayDate(),
+      blogId,
+    });
     return res.json(comment);
   }
 
   async getCommentsById(req, res) {
     const { id } = req.params;
-    const comment = await Comments.findOne({ where: { blogId } });
+    const comment = await Comments.findAll({ where: { blogId: id } });
     return res.json(comment);
   }
 

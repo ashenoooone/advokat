@@ -71,6 +71,10 @@ const Comments = sequelize.define('comments', {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
 });
 
 Comments.belongsTo(BlogCards);

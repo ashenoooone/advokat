@@ -47,7 +47,7 @@ const ReviewPopup = ({ isOpened, onClosePopupClick, setIsPopupOpened }) => {
         name: nameText,
         email: emailText,
         text: reviewText,
-        rating,
+        rating: rating + 1,
       });
       setNameText('');
       setEmailText('');

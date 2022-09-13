@@ -29,6 +29,9 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, closePopup }) => {
     if (nameError.length === 0 && contactError.length === 0) {
       axios
         .post('http://134.0.115.164:7000/api/consultation', {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
           email: contact,
           name: name,
         })

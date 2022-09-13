@@ -28,19 +28,15 @@ const Article = () => {
   const handleEmailChange = e => setEmail(e.target.value);
   const handleFormSubmit = async e => {
     e.preventDefault();
-    const response = await axios.post(
-      `http://134.0.115.164:7000/api/article/${id}`,
-      {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        },
-        comment: {
-          name,
-          text: comment,
-          email,
-        },
-      }
-    );
+    const response = await axios.post(`http://134.0.115.164:7000/api/article`, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+      name,
+      text: comment,
+      email,
+      blogId: id,
+    });
     if (response) {
       setComments(state => [
         ...state,
@@ -52,6 +48,9 @@ const Article = () => {
           data: response.data.data,
         },
       ]);
+      setComment('');
+      setEmail('');
+      setName('');
     }
   };
   /* api handler */
@@ -76,7 +75,7 @@ const Article = () => {
           },
         }
       );
-      console.log(res.data);
+      setComments(res.data);
     }
   }, [id]);
   const getAnotherBlog = useCallback(async () => {
