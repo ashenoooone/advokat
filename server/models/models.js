@@ -34,7 +34,7 @@ const BlogCards = sequelize.define('blogs', {
     primaryKey: true,
   },
   image: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
   },
   time: {
     type: DataTypes.STRING,
@@ -76,5 +76,5 @@ const Comments = sequelize.define('comments', {
 Comments.belongsTo(BlogCards);
 BlogCards.hasMany(Comments);
 
-sequelize.sync({ force: true });
+//sequelize.sync({ force: true });
 module.exports = { Review, BlogCards, Comments };

@@ -162,9 +162,7 @@ class DataController {
   }
 
   async createPost(req, res, next) {
-    const image = req.file?.image;
-    if (image) image.mv('./uploads/' + avatar.name);
-    const { title, text } = req.body;
+    const { title, image, text } = req.body;
     const today = new Date();
     const day = today.getDate();
     const month = today.getMonth() + 1;
