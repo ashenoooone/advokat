@@ -27,11 +27,21 @@ const Article = () => {
       }
     );
     setBlogData(response.data);
-    const articleComments = response.data.comments.map(comm =>
-      JSON.parse(comm)
-    );
-    setComments(articleComments);
-  }, []);
+    console.log('getInfo', response.data);
+  }, [id]);
+  const getComments = useCallback(async () => {
+    if (id) {
+      const res = await axios.get(
+        `http://134.0.115.164:7000/api/comments/${id}`,
+        {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
+        }
+      );
+      console.log(res.data);
+    }
+  }, [id]);
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
   const [email, setEmail] = useState('');
@@ -66,38 +76,24 @@ const Article = () => {
       ]);
     }
   };
-  //
   const [comments, setComments] = useState([]);
-  const [anotherBlog, setAnotherBlog] = useState([]);
-  const getComents = useCallback(async () => {
-    const response = await axios.get(
-      `http://134.0.115.164:7000/api/article/${id}`,
-      {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        },
-      }
-    );
-    if (response) {
-      setComments(response.data.comments);
-    }
-  }, []);
-  const getAnotherBlog = useCallback(async () => {
-    const response = await axios.get(
-      `http://134.0.115.164:7000/api/another-blog`,
-      {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        },
-      }
-    );
-    if (response) setComments(response.data.anotherBlogs);
-  }, []);
+  // const [anotherBlog, setAnotherBlog] = useState([]);
+  // const getAnotherBlog = useCallback(async () => {
+  //   const response = await axios.get(
+  //     `http://134.0.115.164:7000/api/another-blog`,
+  //     {
+  //       headers: {
+  //         'Access-Control-Allow-Origin': '*',
+  //       },
+  //     }
+  //   );
+  //   if (response) setComments(response.data.anotherBlogs);
+  // }, []);
   useEffect(() => {
     getInfo();
-    getComents();
-    getAnotherBlog();
-  }, []);
+    getComments();
+    // getAnotherBlog();
+  }, [getInfo, getComments]);
   return (
     <main className='main' key={id}>
       <div className='main__container'>
@@ -127,18 +123,17 @@ const Article = () => {
         </div>
         <div className='another-blog'>
           <h2 className='another-blog__title'>Другие статьи</h2>
-          <div className='another-blog__container'>
+          {/* <div className='another-blog__container'>
             {anotherBlog.map(blog => (
               <BlogCard key={'blog/' + blog.id} {...blog} />
             ))}
-          </div>
+          </div> */}
         </div>
         <div className='rating'>
           <h2 className='rating__title'>Комментарии</h2>
           <div className='rating__comments'>
-            {comments.map(com => (
-              <Comment key={'comment/' + com.id} {...com} />
-            ))}
+            {console.log('comments', comments) &&
+              comments.map(com => <Comment key={'com/' + com.id} {...com} />)}
           </div>
         </div>
       </div>
