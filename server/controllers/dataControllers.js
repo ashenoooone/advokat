@@ -128,7 +128,8 @@ class DataController {
   }
 
   async sendReaction(req, res, next) {
-    const { like, dislike, id } = req.body;
+    const { id } = req.params;
+    const { like, dislike } = req.body;
     const blog = await BlogCards.findOne({ where: { id } });
     if (like) {
       blog.update({
