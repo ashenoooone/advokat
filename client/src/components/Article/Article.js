@@ -13,38 +13,16 @@ import { useCallback } from 'react';
 const Article = () => {
   const { id } = useParams();
   const [isOpen, setOpen] = useState(false);
-  const handleTogglePopup = () => {
-    setOpen(!isOpen);
-  };
-  const [blogData, setBlogData] = useState({});
-  const getInfo = useCallback(async () => {
-    const response = await axios.get(
-      `http://134.0.115.164:7000/api/article/${id}`,
-      {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        },
-      }
-    );
-    setBlogData(response.data);
-    console.log('getInfo', response.data);
-  }, [id]);
-  const getComments = useCallback(async () => {
-    if (id) {
-      const res = await axios.get(
-        `http://134.0.115.164:7000/api/comments/${id}`,
-        {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-          },
-        }
-      );
-      console.log(res.data);
-    }
-  }, [id]);
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
   const [email, setEmail] = useState('');
+  const [blogData, setBlogData] = useState({});
+  const [comments, setComments] = useState([]);
+  const [anotherBlog, setAnotherBlog] = useState([]);
+  /* handlers */
+  const handleTogglePopup = () => {
+    setOpen(!isOpen);
+  };
   const handleNameChange = e => setName(e.target.value);
   const handleCommentChange = e => setComment(e.target.value);
   const handleEmailChange = e => setEmail(e.target.value);
@@ -76,24 +54,48 @@ const Article = () => {
       ]);
     }
   };
-  const [comments, setComments] = useState([]);
-  // const [anotherBlog, setAnotherBlog] = useState([]);
-  // const getAnotherBlog = useCallback(async () => {
-  //   const response = await axios.get(
-  //     `http://134.0.115.164:7000/api/another-blog`,
-  //     {
-  //       headers: {
-  //         'Access-Control-Allow-Origin': '*',
-  //       },
-  //     }
-  //   );
-  //   if (response) setComments(response.data.anotherBlogs);
-  // }, []);
+  /* api handler */
+  const getInfo = useCallback(async () => {
+    const response = await axios.get(
+      `http://134.0.115.164:7000/api/article/${id}`,
+      {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
+    setBlogData(response.data);
+  }, [id]);
+  const getComments = useCallback(async () => {
+    if (id) {
+      const res = await axios.get(
+        `http://134.0.115.164:7000/api/comments/${id}`,
+        {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
+        }
+      );
+      console.log(res.data);
+    }
+  }, [id]);
+  const getAnotherBlog = useCallback(async () => {
+    const response = await axios.get(
+      `http://134.0.115.164:7000/api/another-blog`,
+      {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
+    if (response) setAnotherBlog(response.data.anotherBlogs);
+  }, []);
+
   useEffect(() => {
     getInfo();
     getComments();
-    // getAnotherBlog();
-  }, [getInfo, getComments]);
+    getAnotherBlog();
+  }, [getInfo, getComments, getAnotherBlog]);
   return (
     <main className='main' key={id}>
       <div className='main__container'>
@@ -123,16 +125,16 @@ const Article = () => {
         </div>
         <div className='another-blog'>
           <h2 className='another-blog__title'>Другие статьи</h2>
-          {/* <div className='another-blog__container'>
+          <div className='another-blog__container'>
             {anotherBlog.map(blog => (
               <BlogCard key={'blog/' + blog.id} {...blog} />
             ))}
-          </div> */}
+          </div>
         </div>
         <div className='rating'>
           <h2 className='rating__title'>Комментарии</h2>
           <div className='rating__comments'>
-            {console.log('comments', comments) &&
+            {comments &&
               comments.map(com => <Comment key={'com/' + com.id} {...com} />)}
           </div>
         </div>
