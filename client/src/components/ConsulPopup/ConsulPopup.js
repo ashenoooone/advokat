@@ -4,24 +4,36 @@ import close from '../../assets/close-cross.svg';
 import { motion, AnimatePresence } from 'framer-motion';
 import ConfPopup from '../ConfPopup/ConfPopup';
 import axios from 'axios';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
-const ConsulPopup = ({ isOpened, onClosePopupClick }) => {
+const ConsulPopup = ({ isOpened, onClosePopupClick, closePopup }) => {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [nameError, setNameError] = useState('');
   const [contactError, setContactError] = useState('');
+  const [isTooltipOpened, setIsTooltipOpened] = useState(false);
+
+  const onCloseTooltipClick = (e) => {
+    e.preventDefault();
+    const classes = e.target.classList;
+    e.stopPropagation();
+    if (classes.contains('popup') || classes.contains('popup__close-button')) {
+      setIsTooltipOpened(false);
+      closePopup();
+    }
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (nameError.length === 0 && contactError.length === 0) {
       axios
-        .post('http://localhost:7000/api/consultation', {
+        .post('http://134.0.115.164:7000/api/consultation', {
           email: contact,
           name: name,
         })
         .then(() => {
-          console.log('запрос отправлен');
+          setIsTooltipOpened(true);
         });
     } else {
       console.log(nameError, contactError);
@@ -121,6 +133,11 @@ const ConsulPopup = ({ isOpened, onClosePopupClick }) => {
         key={1}
         onClosePopupClick={onCloseConfPopupClick}
         isOpened={isPopupOpened}
+      />
+      <InfoTooltip
+        isOpened={isTooltipOpened}
+        onClose={onCloseTooltipClick}
+        title='Заявка отправлена'
       />
     </section>
   );
