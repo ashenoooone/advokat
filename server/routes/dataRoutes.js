@@ -9,7 +9,7 @@ router.post('/reviews', DataController.sendReview);
 router.patch('/reviews', DataController.updateReviewStatus);
 router.delete('/reviews', DataController.deleteReview);
 router.get('/another-blog', DataController.getAnotherBlog);
-router.post('/review-card', DataController.sendReaction);
+router.post('/review-card/:id', DataController.sendReaction);
 router.post('/article', DataController.sendComment);
 router.get('/comments/:id', DataController.getCommentsById);
 router.get('/article/:id', DataController.getCardsById);
