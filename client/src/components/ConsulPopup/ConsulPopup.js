@@ -12,11 +12,14 @@ const ConsulPopup = ({ isOpened, onClosePopupClick }) => {
   const [nameError, setNameError] = useState('');
   const [contactError, setContactError] = useState('');
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     if (nameError.length === 0 && contactError.length === 0) {
       axios
-        .post('http://localhost:7000/api/consultation', {
+        .post('http://134.0.115.164:7000/api/consultation', {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
           email: contact,
           name: name,
         })
@@ -28,14 +31,14 @@ const ConsulPopup = ({ isOpened, onClosePopupClick }) => {
     }
   };
 
-  const onNameChange = (e) => {
+  const onNameChange = e => {
     setName(e.target.value);
     if (!e.target.value.match(/(?! {2,}).{2,}/g))
       setNameError('Минимальная длина имени 2 символа.');
     else setNameError('');
   };
 
-  const onContactChange = (e) => {
+  const onContactChange = e => {
     setContact(e.target.value);
     if (
       !e.target.value.match(
@@ -46,7 +49,7 @@ const ConsulPopup = ({ isOpened, onClosePopupClick }) => {
     else setContactError('');
   };
 
-  const onCloseConfPopupClick = (e) => {
+  const onCloseConfPopupClick = e => {
     e.preventDefault();
     const classes = e.target.classList;
     e.stopPropagation();
@@ -54,7 +57,7 @@ const ConsulPopup = ({ isOpened, onClosePopupClick }) => {
       setIsPopupOpened(false);
   };
 
-  const onOpenPopupClick = (e) => {
+  const onOpenPopupClick = e => {
     e.preventDefault();
     setIsPopupOpened(true);
   };

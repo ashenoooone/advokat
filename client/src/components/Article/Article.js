@@ -48,6 +48,9 @@ const Article = () => {
           data: response.data.data,
         },
       ]);
+      setComment('');
+      setEmail('');
+      setName('');
     }
   };
   /* api handler */
@@ -72,7 +75,7 @@ const Article = () => {
           },
         }
       );
-      console.log(res.data);
+      setComments(res.data);
     }
   }, [id]);
   const getAnotherBlog = useCallback(async () => {

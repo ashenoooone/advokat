@@ -2,7 +2,6 @@ import React from 'react';
 import './Comment.scss';
 
 const Comment = ({ name, id, data, text }) => {
-  console.log(name, id, data, text);
   const formatId = id =>
     `${id}`.length < 4 ? '0'.repeat(4 - `${id}`.length) + id : id;
 

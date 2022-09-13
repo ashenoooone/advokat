@@ -158,7 +158,7 @@ class DataController {
 
   async getCommentsById(req, res) {
     const { id } = req.params;
-    const comment = await Comments.findOne({ where: { id } });
+    const comment = await Comments.findAll({ where: { blogId: id } });
     return res.json(comment);
   }
 
