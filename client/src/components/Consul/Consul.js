@@ -1,6 +1,5 @@
 import React from 'react';
 import './Consul.scss';
-import logo from '../../assets/logo_gray.svg';
 import ConsulPopup from '../ConsulPopup/ConsulPopup';
 import { useState } from 'react';
 
