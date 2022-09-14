@@ -4,53 +4,44 @@ import close from '../../assets/close-cross.svg';
 import { motion, AnimatePresence } from 'framer-motion';
 import ConfPopup from '../ConfPopup/ConfPopup';
 import axios from 'axios';
-import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
-const ConsulPopup = ({ isOpened, onClosePopupClick, closePopup }) => {
+const ConsulPopup = ({ isOpened, onClosePopupClick, setOpened }) => {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [nameError, setNameError] = useState('');
   const [contactError, setContactError] = useState('');
-  const [isTooltipOpened, setIsTooltipOpened] = useState(false);
 
-  const onCloseTooltipClick = (e) => {
-    e.preventDefault();
-    const classes = e.target.classList;
-    e.stopPropagation();
-    if (classes.contains('popup') || classes.contains('popup__close-button')) {
-      setIsTooltipOpened(false);
-      closePopup();
-    }
-  };
-
-  const onSubmit = (e) => {
+  const onSubmit = async e => {
     e.preventDefault();
     if (nameError.length === 0 && contactError.length === 0) {
-      axios
-        .post('http://134.0.115.164:7000/api/consultation', {
+      const response = await axios.post(
+        'http://134.0.115.164:7000/api/consultation',
+        {
           headers: {
             'Access-Control-Allow-Origin': '*',
           },
           email: contact,
           name: name,
-        })
-        .then(() => {
-          setIsTooltipOpened(true);
-        });
+        }
+      );
+      if (response) {
+        setOpened(false);
+        console.log('запрос отправлен');
+      }
     } else {
       console.log(nameError, contactError);
     }
   };
 
-  const onNameChange = (e) => {
+  const onNameChange = e => {
     setName(e.target.value);
     if (!e.target.value.match(/(?! {2,}).{2,}/g))
       setNameError('Минимальная длина имени 2 символа.');
     else setNameError('');
   };
 
-  const onContactChange = (e) => {
+  const onContactChange = e => {
     setContact(e.target.value);
     if (
       !e.target.value.match(
@@ -61,7 +52,7 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, closePopup }) => {
     else setContactError('');
   };
 
-  const onCloseConfPopupClick = (e) => {
+  const onCloseConfPopupClick = e => {
     e.preventDefault();
     const classes = e.target.classList;
     e.stopPropagation();
@@ -69,7 +60,7 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, closePopup }) => {
       setIsPopupOpened(false);
   };
 
-  const onOpenPopupClick = (e) => {
+  const onOpenPopupClick = e => {
     e.preventDefault();
     setIsPopupOpened(true);
   };
@@ -136,11 +127,6 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, closePopup }) => {
         key={1}
         onClosePopupClick={onCloseConfPopupClick}
         isOpened={isPopupOpened}
-      />
-      <InfoTooltip
-        isOpened={isTooltipOpened}
-        onClose={onCloseTooltipClick}
-        title='Заявка отправлена'
       />
     </section>
   );

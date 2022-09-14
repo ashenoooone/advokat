@@ -9,13 +9,10 @@ const Consul = () => {
   const onOpenPopupClick = () => {
     setIsPopupOpened(!isPopupOpened);
   };
-  const onClosePopupClick = (e) => {
+  const onClosePopupClick = e => {
     const classes = e.target.classList;
     if (classes.contains('popup') || classes.contains('popup__close-button'))
       setIsPopupOpened(false);
-  };
-  const closePopup = (e) => {
-    setIsPopupOpened(false);
   };
   return (
     <section className='consul'>
@@ -227,7 +224,7 @@ const Consul = () => {
       <ConsulPopup
         onClosePopupClick={onClosePopupClick}
         isOpened={isPopupOpened}
-        closePopup={closePopup}
+        setOpened={setIsPopupOpened}
       />
     </section>
   );
