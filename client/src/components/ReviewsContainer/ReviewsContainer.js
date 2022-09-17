@@ -24,7 +24,6 @@ const ReviewsContainer = () => {
         },
       })
       .then(res => {
-        console.log(res);
         setReviews(res.data);
       });
   }, []);
