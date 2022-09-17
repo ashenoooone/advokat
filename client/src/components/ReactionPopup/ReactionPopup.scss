@@ -1,38 +1,38 @@
 .reaction {
-	&-popup {
-		position: absolute;
-		top: calc(100% + 16px);
-		right: 0;
-		background: #ffffff;
-		border: 1px solid #b1a9a0;
-		overflow: hidden;
+  &-popup {
+    position: absolute;
+    top: calc(100% + 16px);
+    right: 0;
+    background: #ffffff;
+    border: 1px solid #b1a9a0;
+    // overflow: hidden;
 
-		&__container {
-			display: flex;
-			padding: 16px 24px 24px;
-			flex-direction: column;
-			width: 267px;
-		}
+    &__container {
+      display: flex;
+      padding: 16px 24px 24px;
+      flex-direction: column;
+      width: 267px;
+    }
 
-		&__title {
-			font-family: 'Lora';
-			font-style: normal;
-			font-weight: 700;
-			font-size: 24px;
-			line-height: 31px;
-			color: #261600;
-			margin: 0;
-		}
+    &__title {
+      font-family: 'Lora';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 31px;
+      color: #261600;
+      margin: 0;
+    }
 
-		&__link {
-			font-family: 'SourceSansPro';
-			font-style: normal;
-			font-weight: 400;
-			font-size: 12px;
-			line-height: 15px;
-			text-align: center;
-			text-decoration-line: underline;
-			color: #261600;
-		}
-	}
+    &__link {
+      font-family: 'SourceSansPro';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+      text-align: center;
+      text-decoration-line: underline;
+      color: #261600;
+    }
+  }
 }

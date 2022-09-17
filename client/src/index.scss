@@ -184,3 +184,19 @@ h1 {
     transform: rotate(-360deg);
   }
 }
+
+.captcha {
+  position: absolute;
+  display: none;
+  visibility: hidden;
+  &_active {
+    display: block;
+    visibility: visible;
+  }
+}
+.submit-button-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

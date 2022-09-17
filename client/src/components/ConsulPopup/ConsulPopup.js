@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ConfPopup from '../ConfPopup/ConfPopup';
 import axios from 'axios';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const ConsulPopup = ({ isOpened, onClosePopupClick, closePopup }) => {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
@@ -13,19 +14,12 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, closePopup }) => {
   const [nameError, setNameError] = useState('');
   const [contactError, setContactError] = useState('');
   const [isTooltipOpened, setIsTooltipOpened] = useState(false);
+  const [isCaptchaCompleted, setIsCaptchaCompleted] = useState(false);
+  const [isCaptchaVisible, setIsCaptchaVisible] = useState(false);
 
-  const onCloseTooltipClick = (e) => {
-    e.preventDefault();
-    const classes = e.target.classList;
-    e.stopPropagation();
-    if (classes.contains('popup') || classes.contains('popup__close-button')) {
-      setIsTooltipOpened(false);
-      closePopup();
-    }
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onCaptchaChange = (e) => {
+    setIsCaptchaCompleted(true);
+    setIsCaptchaVisible(false);
     if (nameError.length === 0 && contactError.length === 0) {
       axios
         .post('http://134.0.115.164:7000/api/consultation', {
@@ -37,10 +31,29 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, closePopup }) => {
         })
         .then(() => {
           setIsTooltipOpened(true);
+          setIsCaptchaCompleted(false);
         });
     } else {
       console.log(nameError, contactError);
     }
+  };
+
+  const onCloseTooltipClick = (e) => {
+    e.preventDefault();
+    const classes = e.target.classList;
+    e.stopPropagation();
+    if (classes.contains('popup') || classes.contains('popup__close-button')) {
+      setIsTooltipOpened(false);
+      closePopup();
+      setName('');
+      setContact('');
+    }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (nameError.length === 0 && contactError.length === 0)
+      setIsCaptchaVisible(true);
   };
 
   const onNameChange = (e) => {
@@ -57,7 +70,7 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, closePopup }) => {
         /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/g
       )
     )
-      setContactError('Введите корректную почту.');
+      setContactError('Введите корректную почту или номер телефона.');
     else setContactError('');
   };
 
@@ -117,7 +130,16 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, closePopup }) => {
                 />
                 <span className='popup-form__input-error'>{contactError}</span>
               </div>
-              <button className='button button_default'>Записаться</button>
+              <div className='submit-button-container'>
+                <ReCAPTCHA
+                  sitekey={process.env.REACT_APP_SITE_KEY}
+                  className={`captcha ${
+                    isCaptchaVisible ? 'captcha_active' : ''
+                  }`}
+                  onChange={onCaptchaChange}
+                />
+                <button className='button button_default'>Записаться</button>
+              </div>
             </form>
             <p className='consul-popup__conf'>
               Нажимая на кнопку, я соглашаюсь с условиями{' '}

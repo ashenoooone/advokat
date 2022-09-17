@@ -1,4 +1,10 @@
 .consul-popup {
+  .popup__container {
+  }
+  .button {
+    margin-top: 24px;
+  }
+
   &__title {
     margin: 0;
     font-family: 'Lora';

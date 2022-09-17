@@ -55,7 +55,9 @@
     ]
   },
   "devDependencies": {
+    "dotenv": "^16.0.2",
     "gh-pages": "^4.0.0",
+    "react-google-recaptcha": "^2.1.0",
     "sass": "^1.54.0"
   },
   "homepage": "."
