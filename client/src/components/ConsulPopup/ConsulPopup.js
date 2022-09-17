@@ -7,23 +7,17 @@ import axios from 'axios';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import ReCAPTCHA from 'react-google-recaptcha';
 
-const ConsulPopup = ({
-  isOpened,
-  onClosePopupClick,
-  setOpened,
-  closePopup,
-}) => {
+const ConsulPopup = ({ isOpened, onClosePopupClick, onClose }) => {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [nameError, setNameError] = useState('');
   const [contactError, setContactError] = useState('');
   const [isTooltipOpened, setIsTooltipOpened] = useState(false);
-  const [isCaptchaCompleted, setIsCaptchaCompleted] = useState(false);
   const [isCaptchaVisible, setIsCaptchaVisible] = useState(false);
 
-  const onCaptchaChange = async (e) => {
-    setIsCaptchaCompleted(true);
+  const onCaptchaChange = async e => {
+    console.log(e.target);
     setIsCaptchaVisible(false);
     if (nameError.length === 0 && contactError.length === 0) {
       const response = await axios
@@ -36,39 +30,38 @@ const ConsulPopup = ({
         })
         .then(() => {
           setIsTooltipOpened(true);
-          setIsCaptchaCompleted(false);
         });
     } else {
       console.log(nameError, contactError);
     }
   };
 
-  const onCloseTooltipClick = (e) => {
+  const onCloseTooltipClick = e => {
     e.preventDefault();
     const classes = e.target.classList;
     e.stopPropagation();
     if (classes.contains('popup') || classes.contains('popup__close-button')) {
       setIsTooltipOpened(false);
-      closePopup();
+      onClose();
       setName('');
       setContact('');
     }
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     if (nameError.length === 0 && contactError.length === 0)
       setIsCaptchaVisible(true);
   };
 
-  const onNameChange = (e) => {
+  const onNameChange = e => {
     setName(e.target.value);
     if (!e.target.value.match(/(?! {2,}).{2,}/g))
       setNameError('Минимальная длина имени 2 символа.');
     else setNameError('');
   };
 
-  const onContactChange = (e) => {
+  const onContactChange = e => {
     setContact(e.target.value);
     if (
       !e.target.value.match(
@@ -79,7 +72,7 @@ const ConsulPopup = ({
     else setContactError('');
   };
 
-  const onCloseConfPopupClick = (e) => {
+  const onCloseConfPopupClick = e => {
     e.preventDefault();
     const classes = e.target.classList;
     e.stopPropagation();
@@ -87,7 +80,7 @@ const ConsulPopup = ({
       setIsPopupOpened(false);
   };
 
-  const onOpenPopupClick = (e) => {
+  const onOpenPopupClick = e => {
     e.preventDefault();
     setIsPopupOpened(true);
   };

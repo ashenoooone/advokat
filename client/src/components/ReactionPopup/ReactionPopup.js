@@ -22,10 +22,10 @@ const ReactionPopup = ({ isOpen, isLike, id, setCards }) => {
         like: email,
       }
     );
-    setCards((state) => {
-      const updateCard = state.find((card) => card.id === id);
+    setCards(state => {
+      const updateCard = state.find(card => card.id === id);
       updateCard.likes.push(email);
-      const cards = state.filter((card) => card.id !== id);
+      const cards = state.filter(card => card.id !== id);
       return [...cards, updateCard].sort((a, b) => a.id - b.id);
     });
   }, [email, id]);
@@ -39,35 +39,35 @@ const ReactionPopup = ({ isOpen, isLike, id, setCards }) => {
         dislike: email,
       }
     );
-    setCards((state) => {
-      const updateCard = state.find((card) => card.id === id);
+    setCards(state => {
+      const updateCard = state.find(card => card.id === id);
       updateCard.dislikes.push(email);
-      const cards = state.filter((card) => card.id !== id);
+      const cards = state.filter(card => card.id !== id);
       return [...cards, updateCard].sort((a, b) => a.id - b.id);
     });
   }, [email, id]);
-  const onCloseConfPopupClick = (e) => {
+  const onCloseConfPopupClick = e => {
     e.preventDefault();
     const classes = e.target.classList;
     e.stopPropagation();
     if (classes.contains('popup') || classes.contains('popup__close-button'))
       setIsPopupOpened(false);
   };
-  const onOpenPopupClick = (e) => {
+  const onOpenPopupClick = e => {
     e.preventDefault();
     setIsPopupOpened(true);
   };
-  const handleSubmitReactionForm = (e) => {
+  const handleSubmitReactionForm = e => {
     e.preventDefault();
     setIsCaptchaVisible(true);
-    // if (isLike) {
-    //   sendLikeReaction();
-    // } else {
-    //   sendDislikeReaction();
-    // }
+    if (isLike) {
+      sendLikeReaction();
+    } else {
+      sendDislikeReaction();
+    }
     setEmail('');
   };
-  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handleEmailChange = e => setEmail(e.target.value);
   return (
     <AnimatePresence>
       {isOpen && (
