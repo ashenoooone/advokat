@@ -7,7 +7,12 @@ import axios from 'axios';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import ReCAPTCHA from 'react-google-recaptcha';
 
-const ConsulPopup = ({ isOpened, onClosePopupClick, setOpened }) => {
+const ConsulPopup = ({
+  isOpened,
+  onClosePopupClick,
+  setOpened,
+  closePopup,
+}) => {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
@@ -17,13 +22,12 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, setOpened }) => {
   const [isCaptchaCompleted, setIsCaptchaCompleted] = useState(false);
   const [isCaptchaVisible, setIsCaptchaVisible] = useState(false);
 
-  const onCaptchaChange = (e) => {
+  const onCaptchaChange = async (e) => {
     setIsCaptchaCompleted(true);
     setIsCaptchaVisible(false);
     if (nameError.length === 0 && contactError.length === 0) {
-      const response = await axios.post(
-        'http://134.0.115.164:7000/api/consultation',
-        {
+      const response = await axios
+        .post('http://134.0.115.164:7000/api/consultation', {
           headers: {
             'Access-Control-Allow-Origin': '*',
           },
@@ -64,7 +68,7 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, setOpened }) => {
     else setNameError('');
   };
 
-  const onContactChange = e => {
+  const onContactChange = (e) => {
     setContact(e.target.value);
     if (
       !e.target.value.match(
@@ -75,7 +79,7 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, setOpened }) => {
     else setContactError('');
   };
 
-  const onCloseConfPopupClick = e => {
+  const onCloseConfPopupClick = (e) => {
     e.preventDefault();
     const classes = e.target.classList;
     e.stopPropagation();
@@ -83,7 +87,7 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, setOpened }) => {
       setIsPopupOpened(false);
   };
 
-  const onOpenPopupClick = e => {
+  const onOpenPopupClick = (e) => {
     e.preventDefault();
     setIsPopupOpened(true);
   };
@@ -159,6 +163,12 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, setOpened }) => {
         key={1}
         onClosePopupClick={onCloseConfPopupClick}
         isOpened={isPopupOpened}
+      />
+      <InfoTooltip
+        title='Заявка отправлена!'
+        isError={false}
+        isOpened={isTooltipOpened}
+        onClose={onCloseTooltipClick}
       />
     </section>
   );
