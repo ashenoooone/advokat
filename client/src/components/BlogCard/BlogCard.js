@@ -43,19 +43,6 @@ const BlogCard = ({
     )
       return setOpen(!isOpen);
   };
-  // const handleClosePopup = e => {
-  //   e.stopPropagation();
-  //   if (
-  //     e.target.closest('div').className ===
-  //     'card__button-box' + ' card__button-box__' + id
-  //   )
-  //     return;
-  //   if (
-  //     isOpen &&
-  //     e.target.closest('div').className !== 'reaction-popup__container'
-  //   )
-  //     setOpen(false);
-  // };
   const handleKeyPressClosePopup = e => {
     if (isOpen && e.key === 'Escape') setOpen(false);
   };
