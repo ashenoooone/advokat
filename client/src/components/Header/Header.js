@@ -23,6 +23,8 @@ const Header = () => {
       } else {
         setPos(window.scrollY);
         setHide(false);
+        setOpen(false);
+        setBurger(true);
       }
     };
     window.addEventListener('scroll', scrollHandler);
@@ -84,7 +86,7 @@ const Header = () => {
         )}
       </div>
       <AnimatePresence>
-        {!isBurger && (
+        {isBurgerActive && !isBurger && (
           <motion.nav
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

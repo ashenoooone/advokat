@@ -148,6 +148,7 @@ const Article = () => {
                 className='popup-form__input'
                 placeholder='Имя'
                 value={name}
+                required
                 onChange={handleNameChange}
               />
               <input
@@ -155,6 +156,7 @@ const Article = () => {
                 className='popup-form__input'
                 placeholder='Email'
                 value={email}
+                required
                 onChange={handleEmailChange}
               />
             </div>
@@ -163,6 +165,7 @@ const Article = () => {
               className='popup-form__input'
               placeholder='Комментарий'
               value={comment}
+              required
               onChange={handleCommentChange}
             />
             <button className='reviews-form__button'>Отправить</button>
