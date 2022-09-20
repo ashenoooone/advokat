@@ -30,7 +30,9 @@ const BlogCard = ({
   };
   const [maxLines, setMaxLines] = useState(6);
   const [isOpen, setOpen] = useState(false);
+  const onClose = () => setOpen(false);
   const handleTogglePopup = e => {
+    e.stopPropagation();
     if (
       e.target.closest('div').className ===
         'card__buttos-container' + ' card__buttos-container__' + id ||
@@ -41,18 +43,19 @@ const BlogCard = ({
     )
       return setOpen(!isOpen);
   };
-  const handleClosePopup = e => {
-    if (
-      e.target.closest('div').className ===
-      'card__button-box' + ' card__button-box__' + id
-    )
-      return;
-    if (
-      isOpen &&
-      e.target.closest('div').className !== 'reaction-popup__container'
-    )
-      setOpen(false);
-  };
+  // const handleClosePopup = e => {
+  //   e.stopPropagation();
+  //   if (
+  //     e.target.closest('div').className ===
+  //     'card__button-box' + ' card__button-box__' + id
+  //   )
+  //     return;
+  //   if (
+  //     isOpen &&
+  //     e.target.closest('div').className !== 'reaction-popup__container'
+  //   )
+  //     setOpen(false);
+  // };
   const handleKeyPressClosePopup = e => {
     if (isOpen && e.key === 'Escape') setOpen(false);
   };
@@ -64,10 +67,8 @@ const BlogCard = ({
   }, [titleRef, text]);
 
   useEffect(() => {
-    document.addEventListener('click', handleClosePopup);
     document.addEventListener('keydown', handleKeyPressClosePopup);
     return () => {
-      document.removeEventListener('click', handleClosePopup);
       document.removeEventListener('keydown', handleKeyPressClosePopup);
     };
   }, [isOpen]);
@@ -124,6 +125,7 @@ const BlogCard = ({
             isLike={isLike}
             id={id}
             setCards={setCards}
+            onClose={onClose}
           />
         </div>
       </div>

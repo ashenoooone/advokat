@@ -5,10 +5,9 @@ import ConfPopup from '../ConfPopup/ConfPopup';
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
 
-const ReactionPopup = ({ isOpen, isLike, id, setCards }) => {
+const ReactionPopup = ({ isOpen, isLike, id, setCards, onClose }) => {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
   const [email, setEmail] = useState('');
-  const [isCaptchaCompleted, setIsCaptchaCompleted] = useState(false);
   const [isCaptchaVisible, setIsCaptchaVisible] = useState(false);
   let siteKey = process.env.REACT_APP_SITE_KEY;
 
@@ -22,12 +21,13 @@ const ReactionPopup = ({ isOpen, isLike, id, setCards }) => {
         like: email,
       }
     );
-    setCards(state => {
-      const updateCard = state.find(card => card.id === id);
-      updateCard.likes.push(email);
-      const cards = state.filter(card => card.id !== id);
-      return [...cards, updateCard].sort((a, b) => a.id - b.id);
-    });
+    response &&
+      setCards(state => {
+        const updateCard = state.find(card => card.id === id);
+        updateCard.likes.push(email);
+        const cards = state.filter(card => card.id !== id);
+        return [...cards, updateCard].sort((a, b) => a.id - b.id);
+      });
   }, [email, id]);
   const sendDislikeReaction = useCallback(async () => {
     const response = await axios.post(
@@ -39,12 +39,13 @@ const ReactionPopup = ({ isOpen, isLike, id, setCards }) => {
         dislike: email,
       }
     );
-    setCards(state => {
-      const updateCard = state.find(card => card.id === id);
-      updateCard.dislikes.push(email);
-      const cards = state.filter(card => card.id !== id);
-      return [...cards, updateCard].sort((a, b) => a.id - b.id);
-    });
+    response &&
+      setCards(state => {
+        const updateCard = state.find(card => card.id === id);
+        updateCard.dislikes.push(email);
+        const cards = state.filter(card => card.id !== id);
+        return [...cards, updateCard].sort((a, b) => a.id - b.id);
+      });
   }, [email, id]);
   const onCloseConfPopupClick = e => {
     e.preventDefault();
@@ -60,14 +61,26 @@ const ReactionPopup = ({ isOpen, isLike, id, setCards }) => {
   const handleSubmitReactionForm = e => {
     e.preventDefault();
     setIsCaptchaVisible(true);
-    if (isLike) {
-      sendLikeReaction();
-    } else {
-      sendDislikeReaction();
-    }
-    setEmail('');
   };
   const handleEmailChange = e => setEmail(e.target.value);
+  const onOuterPopupClick = e => {
+    if (
+      e.target.closest('div').className !== 'reaction-popup__container' &&
+      e.target.closest('div').className !== 'submit-button-container'
+    ) {
+      onClose();
+    }
+  };
+  const onCaptchaChange = async e => {
+    setIsCaptchaVisible(false);
+    if (isLike) {
+      await sendLikeReaction();
+    } else {
+      await sendDislikeReaction();
+    }
+    setEmail('');
+    onClose();
+  };
   return (
     <AnimatePresence>
       {isOpen && (
@@ -77,6 +90,7 @@ const ReactionPopup = ({ isOpen, isLike, id, setCards }) => {
           exit={{ height: 0 }}
           transition={{ duration: 0.5 }}
           className='reaction-popup'
+          onClick={onOuterPopupClick}
         >
           <div className='reaction-popup__container'>
             <h3 className='consul-popup__title'>Поставить оценку</h3>
@@ -94,6 +108,7 @@ const ReactionPopup = ({ isOpen, isLike, id, setCards }) => {
                   className={`captcha ${
                     isCaptchaVisible ? 'captcha_active' : ''
                   }`}
+                  onChange={onCaptchaChange}
                 />
                 <button
                   className='button button_default'

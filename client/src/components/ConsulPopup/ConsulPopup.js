@@ -17,10 +17,9 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, onClose }) => {
   const [isCaptchaVisible, setIsCaptchaVisible] = useState(false);
 
   const onCaptchaChange = async e => {
-    console.log(e.target);
     setIsCaptchaVisible(false);
     if (nameError.length === 0 && contactError.length === 0) {
-      const response = await axios
+      axios
         .post('http://134.0.115.164:7000/api/consultation', {
           headers: {
             'Access-Control-Allow-Origin': '*',
