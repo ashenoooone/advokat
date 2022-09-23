@@ -1,50 +1,50 @@
 .blog {
-	width: 100%;
-	max-width: 1280px;
-	margin: 0 auto;
-	padding: 56px 0 112px;
-	box-sizing: border-box;
-	@media screen and (max-width: 1279px) {
-		padding: 56px 60px 112px;
-	}
-	@media screen and (max-width: 1023px) {
-		padding: 56px 40px 112px;
-	}
-	@media screen and (max-width: 764px) {
-		padding: 56px 16px 80px;
-	}
-	&__container {
-		width: 100%;
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(288px, 1fr));
-		gap: 20px;
-	}
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 56px 16px 112px;
+  box-sizing: border-box;
+  @media screen and (max-width: 1279px) {
+    padding: 56px 60px 112px;
+  }
+  @media screen and (max-width: 1023px) {
+    padding: 56px 40px 112px;
+  }
+  @media screen and (max-width: 764px) {
+    padding: 56px 16px 80px;
+  }
+  &__container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(288px, 1fr));
+    gap: 20px;
+  }
 }
 
 .pagination {
-	padding: 24px 0 0;
-	display: flex;
-	gap: 12px;
+  padding: 24px 0 0;
+  display: flex;
+  gap: 12px;
 
-	&__button {
-		background-color: transparent;
-		border: 1px solid #261600;
-		color: #261600;
-		width: 40px;
-		height: 40px;
-		border-radius: 8px;
-		cursor: pointer;
+  &__button {
+    background-color: transparent;
+    border: 1px solid #261600;
+    color: #261600;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
 
-		&_active {
-			background-color: #261600;
-			color: #ffffff;
-		}
-	}
+    &_active {
+      background-color: #261600;
+      color: #ffffff;
+    }
+  }
 }
 
 .button {
-	padding: 8px 0;
-	width: 132px;
-	font-size: 16px;
-	line-height: 20px;
+  padding: 8px 0;
+  width: 132px;
+  font-size: 16px;
+  line-height: 20px;
 }

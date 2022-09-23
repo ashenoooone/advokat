@@ -62,13 +62,11 @@ const Pagination = ({
     <div className='pagination'>
       <button
         className='button button_gray'
-        onClick={() =>
-          setCurrentButton((prev) => (prev <= 1 ? prev : prev - 1))
-        }
+        onClick={() => setCurrentButton(prev => (prev <= 1 ? prev : prev - 1))}
       >
         Назад
       </button>
-      {arrOfCurrButtons.map((number) => {
+      {arrOfCurrButtons.map(number => {
         return (
           <button
             key={number}
@@ -84,7 +82,7 @@ const Pagination = ({
       <button
         className='button button_gray'
         onClick={() =>
-          setCurrentButton((prev) =>
+          setCurrentButton(prev =>
             prev >= numberOfPages.length ? prev : prev + 1
           )
         }
