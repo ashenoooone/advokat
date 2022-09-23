@@ -51,7 +51,7 @@ const Blog = () => {
       {cards.length && (
         <Pagination
           blogPerPage={blogPerPage}
-          totalBlog={cards.length}
+          totalBlog={paginationLength}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
