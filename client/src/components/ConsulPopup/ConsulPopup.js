@@ -15,21 +15,31 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, onClose }) => {
   const [contactError, setContactError] = useState("");
   const [isTooltipOpened, setIsTooltipOpened] = useState(false);
   const [isCaptchaVisible, setIsCaptchaVisible] = useState(false);
+  const [infoText, setInfoText] = useState("Заявка успешно отправлена!");
+  const [isTooltipError, setIsTooltipError] = useState(false);
 
   const onCaptchaChange = async (e) => {
     setIsCaptchaVisible(false);
-    if (nameError.length === 0 && contactError.length === 0) {
-      axios
-        .post("http://134.0.115.164:7000/api/consultation", {
+    try {
+      await axios.post(
+        "http://134.0.115.164:7000/api/consultation",
+        {
+          email: contact,
+          name: name,
+        },
+        {
           headers: {
             "Access-Control-Allow-Origin": "*",
           },
-          email: contact,
-          name: name,
-        })
-        .then(() => {
-          setIsTooltipOpened(true);
-        });
+        }
+      );
+      setInfoText("Заявка успешно отправлена!");
+      setIsTooltipError(false);
+      setIsTooltipOpened(true);
+    } catch (error) {
+      setIsTooltipOpened(true);
+      setInfoText("Ошибка!");
+      setIsTooltipError(true);
     }
   };
 
@@ -155,8 +165,8 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, onClose }) => {
         isOpened={isPopupOpened}
       />
       <InfoTooltip
-        title="Заявка отправлена!"
-        isError={false}
+        title={infoText}
+        isError={isTooltipError}
         isOpened={isTooltipOpened}
         onClose={onCloseTooltipClick}
       />

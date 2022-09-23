@@ -1,6 +1,6 @@
 .review-popup {
   &__title {
-    font-family: 'Lora';
+    font-family: "Lora";
     font-style: normal;
     font-weight: 700;
     font-size: 32px;
@@ -18,13 +18,13 @@
   .button {
     width: 100%;
     padding: 16px 0;
-    font-family: 'SourceSansPro';
+    font-family: "SourceSansPro";
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
     line-height: 25px;
   }
-  .popup__container {
+  > .popup__container {
     max-width: 1062px;
     width: 100%;
     margin: 0 60px;
@@ -46,7 +46,7 @@
     line-height: 25px;
   }
   &__span {
-    font-family: 'Lora';
+    font-family: "Lora";
     font-style: normal;
     font-weight: 700;
     font-size: 24px;

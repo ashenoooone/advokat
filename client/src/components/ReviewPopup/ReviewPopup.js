@@ -5,6 +5,7 @@ import "./ReviewPopup.scss";
 import { useState } from "react";
 import axios from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
+import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 const ReviewPopup = ({ isOpened, onClosePopupClick, setIsPopupOpened }) => {
   const [rating, setRating] = useState(0);
@@ -16,23 +17,35 @@ const ReviewPopup = ({ isOpened, onClosePopupClick, setIsPopupOpened }) => {
   const [emailText, setEmailText] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [isCaptchaVisible, setIsCaptchaVisible] = useState(false);
+  const [isTooltipOpened, setIsTooltipOpened] = useState(false);
+  const [infoText, setInfoText] = useState("Отзыв успешно отправлен!");
+  const [isTooltipError, setIsTooltipError] = useState(false);
 
   const onCaptchaChange = async (e) => {
     setIsCaptchaVisible(false);
-    axios.post("http://134.0.115.164:7000/api/reviews", {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-      name: nameText,
-      email: emailText,
-      text: reviewText,
-      rating: rating + 1,
-    });
-    setNameText("");
-    setEmailText("");
-    setReviewText("");
-    setRating(0);
-    setIsPopupOpened(false);
+    try {
+      await axios.post(
+        "http://134.0.115.164:7000/api/reviews",
+        {
+          name: nameText,
+          email: emailText,
+          text: reviewText,
+          rating: rating + 1,
+        },
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
+      setInfoText("Отзыв успешно отправлен!");
+      setIsTooltipError(false);
+      setIsTooltipOpened(true);
+    } catch (error) {
+      setIsTooltipOpened(true);
+      setInfoText("Ошибка!");
+      setIsTooltipError(true);
+    }
   };
 
   const starsRating = useMemo(() => {
@@ -80,11 +93,26 @@ const ReviewPopup = ({ isOpened, onClosePopupClick, setIsPopupOpened }) => {
       setEmailError("Введите корректный адресс электронной почты.");
     else setEmailError("");
   };
+
   const onReviewInput = (e) => {
     setReviewText(e.target.value);
     if (!e.target.value.match(/.{10,}/g))
       setReviewError("Минимальная длина отзыва 10 символа.");
     else setReviewError("");
+  };
+
+  const onCloseTooltipClick = (e) => {
+    e.preventDefault();
+    const classes = e.target.classList;
+    e.stopPropagation();
+    if (classes.contains("popup") || classes.contains("popup__close-button")) {
+      setIsTooltipOpened(false);
+      setIsPopupOpened(false);
+      setEmailText("");
+      setNameText("");
+      setRating(0);
+      setReviewText("");
+    }
   };
 
   return (
@@ -170,6 +198,12 @@ const ReviewPopup = ({ isOpened, onClosePopupClick, setIsPopupOpened }) => {
           </motion.div>
         )}
       </AnimatePresence>
+      <InfoTooltip
+        title={infoText}
+        isError={isTooltipError}
+        isOpened={isTooltipOpened}
+        onClose={onCloseTooltipClick}
+      />
     </section>
   );
 };
