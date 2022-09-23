@@ -1,28 +1,28 @@
-import { useState } from 'react';
-import './ConsulPopup.scss';
-import close from '../../assets/close-cross.svg';
-import { motion, AnimatePresence } from 'framer-motion';
-import ConfPopup from '../ConfPopup/ConfPopup';
-import axios from 'axios';
-import InfoTooltip from '../InfoTooltip/InfoTooltip';
-import ReCAPTCHA from 'react-google-recaptcha';
+import { useState } from "react";
+import "./ConsulPopup.scss";
+import close from "../../assets/close-cross.svg";
+import { motion, AnimatePresence } from "framer-motion";
+import ConfPopup from "../ConfPopup/ConfPopup";
+import axios from "axios";
+import InfoTooltip from "../InfoTooltip/InfoTooltip";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const ConsulPopup = ({ isOpened, onClosePopupClick, onClose }) => {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
-  const [name, setName] = useState('');
-  const [contact, setContact] = useState('');
-  const [nameError, setNameError] = useState('');
-  const [contactError, setContactError] = useState('');
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [contactError, setContactError] = useState("");
   const [isTooltipOpened, setIsTooltipOpened] = useState(false);
   const [isCaptchaVisible, setIsCaptchaVisible] = useState(false);
 
-  const onCaptchaChange = async e => {
+  const onCaptchaChange = async (e) => {
     setIsCaptchaVisible(false);
     if (nameError.length === 0 && contactError.length === 0) {
       axios
-        .post('http://134.0.115.164:7000/api/consultation', {
+        .post("http://134.0.115.164:7000/api/consultation", {
           headers: {
-            'Access-Control-Allow-Origin': '*',
+            "Access-Control-Allow-Origin": "*",
           },
           email: contact,
           name: name,
@@ -30,119 +30,117 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, onClose }) => {
         .then(() => {
           setIsTooltipOpened(true);
         });
-    } else {
-      console.log(nameError, contactError);
     }
   };
 
-  const onCloseTooltipClick = e => {
+  const onCloseTooltipClick = (e) => {
     e.preventDefault();
     const classes = e.target.classList;
     e.stopPropagation();
-    if (classes.contains('popup') || classes.contains('popup__close-button')) {
+    if (classes.contains("popup") || classes.contains("popup__close-button")) {
       setIsTooltipOpened(false);
       onClose();
-      setName('');
-      setContact('');
+      setName("");
+      setContact("");
     }
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     if (nameError.length === 0 && contactError.length === 0)
       setIsCaptchaVisible(true);
   };
 
-  const onNameChange = e => {
+  const onNameChange = (e) => {
     setName(e.target.value);
     if (!e.target.value.match(/(?! {2,}).{2,}/g))
-      setNameError('Минимальная длина имени 2 символа.');
-    else setNameError('');
+      setNameError("Минимальная длина имени 2 символа.");
+    else setNameError("");
   };
 
-  const onContactChange = e => {
+  const onContactChange = (e) => {
     setContact(e.target.value);
     if (
       !e.target.value.match(
         /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/g
       )
     )
-      setContactError('Введите корректную почту или номер телефона.');
-    else setContactError('');
+      setContactError("Введите корректную почту или номер телефона.");
+    else setContactError("");
   };
 
-  const onCloseConfPopupClick = e => {
+  const onCloseConfPopupClick = (e) => {
     e.preventDefault();
     const classes = e.target.classList;
     e.stopPropagation();
-    if (classes.contains('popup') || classes.contains('popup__close-button'))
+    if (classes.contains("popup") || classes.contains("popup__close-button"))
       setIsPopupOpened(false);
   };
 
-  const onOpenPopupClick = e => {
+  const onOpenPopupClick = (e) => {
     e.preventDefault();
     setIsPopupOpened(true);
   };
   return (
     <section
-      className={`popup consul-popup ${isOpened && 'popup_active'}`}
+      className={`popup consul-popup ${isOpened && "popup_active"}`}
       onClick={onClosePopupClick}
     >
       <AnimatePresence>
         {isOpened && (
           <motion.div
-            className='popup__container'
+            className="popup__container"
             initial={{ y: 300, opacity: 0, scale: 0 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 300, opacity: 0, scale: 0 }}
-            transition={{ bounce: 'none' }}
+            transition={{ bounce: "none" }}
             onClick={onClosePopupClick}
           >
             <img
               src={close}
-              alt='Кнопка закрытия'
-              className='popup__close-button'
+              alt="Кнопка закрытия"
+              className="popup__close-button"
             />
-            <h3 className='consul-popup__title'>Записаться на консультацию</h3>
-            <form className='popup-form' onSubmit={onSubmit}>
-              <div className='popup-form__input-container'>
+            <h3 className="consul-popup__title">Записаться на консультацию</h3>
+            <form className="popup-form" onSubmit={onSubmit}>
+              <div className="popup-form__input-container">
                 <input
-                  type='text'
-                  className='popup-form__input'
-                  placeholder='Имя'
+                  type="text"
+                  className="popup-form__input"
+                  placeholder="Имя"
                   value={name}
                   onChange={onNameChange}
                   required
                 />
-                <span className='popup-form__input-error'>{nameError}</span>
+                <span className="popup-form__input-error">{nameError}</span>
               </div>
-              <div className='popup-form__input-container'>
+              <div className="popup-form__input-container">
                 <input
-                  type='text'
-                  className='popup-form__input'
+                  type="text"
+                  className="popup-form__input"
                   required
                   value={contact}
                   onChange={onContactChange}
-                  placeholder='Телефон или email'
+                  placeholder="Телефон или email"
                 />
-                <span className='popup-form__input-error'>{contactError}</span>
+                <span className="popup-form__input-error">{contactError}</span>
               </div>
-              <div className='submit-button-container'>
+              <div className="submit-button-container">
                 <ReCAPTCHA
                   sitekey={process.env.REACT_APP_SITE_KEY}
                   className={`captcha ${
-                    isCaptchaVisible ? 'captcha_active' : ''
+                    isCaptchaVisible ? "captcha_active" : ""
                   }`}
                   onChange={onCaptchaChange}
                 />
-                <button className='button button_default'>Записаться</button>
+                <button className="button button_default">Записаться</button>
               </div>
             </form>
-            <p className='consul-popup__conf'>
-              Нажимая на кнопку, я соглашаюсь с условиями{' '}
+            <p className="consul-popup__conf">
+              Нажимая на кнопку, я соглашаюсь с условиями{" "}
               <a
-                href='#'
-                className='consul-popup__link'
+                href="#"
+                className="consul-popup__link"
                 onClick={onOpenPopupClick}
               >
                 политики конфиденциальности.
@@ -157,7 +155,7 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, onClose }) => {
         isOpened={isPopupOpened}
       />
       <InfoTooltip
-        title='Заявка отправлена!'
+        title="Заявка отправлена!"
         isError={false}
         isOpened={isTooltipOpened}
         onClose={onCloseTooltipClick}

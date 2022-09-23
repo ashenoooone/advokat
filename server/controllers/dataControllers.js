@@ -1,57 +1,58 @@
-const ApiError = require('../error/ApiError');
-const { Review, BlogCards, Comments } = require('../models/models');
-const { google } = require('googleapis');
-const nodemailer = require('nodemailer');
-const config = require('./nodemailer/config.js');
-const OAuth2 = google.auth.OAuth2;
-const OAuth2_client = new OAuth2(config.clientId, config.clientSecret);
-OAuth2_client.setCredentials({ refresh_token: config.refreshToken });
-const accesToken = OAuth2_client.getAccessToken();
+const ApiError = require("../error/ApiError");
+const { Review, BlogCards, Comments } = require("../models/models");
+// const { google } = require("googleapis");
+// const nodemailer = require("nodemailer");
+// const config = require("./nodemailer/config.js");
+// const OAuth2 = google.auth.OAuth2;
+// const OAuth2_client = new OAuth2(config.clientId, config.clientSecret);
+// OAuth2_client.setCredentials({ refresh_token: config.refreshToken });
+// const accesToken = OAuth2_client.getAccessToken();
 
-const getTodayDate = () => {
-  const today = new Date();
-  const day = today.getDate();
-  const month = today.getMonth() + 1;
-  const year = today.getFullYear();
-  const todayDate = `${day > 9 ? day : '0' + day}.${
-    month > 9 ? month : '0' + month
-  }.${year}`;
-  return todayDate;
-};
+// const getTodayDate = () => {
+//   const today = new Date();
+//   const day = today.getDate();
+//   const month = today.getMonth() + 1;
+//   const year = today.getFullYear();
+//   const todayDate = `${day > 9 ? day : "0" + day}.${
+//     month > 9 ? month : "0" + month
+//   }.${year}`;
+//   return todayDate;
+// };
 
-let transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    type: 'OAuth2',
-    user: config.user,
-    clientId: config.clientId,
-    clientSecret: config.clientSecret,
-    refreshToken: config.refreshToken,
-    accessToken: accesToken,
-  },
-  tls: {
-    rejectUnauthorized: false,
-  },
-});
+// let transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     type: "OAuth2",
+//     user: config.user,
+//     clientId: config.clientId,
+//     clientSecret: config.clientSecret,
+//     refreshToken: config.refreshToken,
+//     accessToken: accesToken,
+//   },
+//   tls: {
+//     rejectUnauthorized: false,
+//   },
+// });
 
 class DataController {
   async consultation(req, res, next) {
     const { email, name } = req.body;
-    if (email && name) {
-      let mailOptions = {
-        from: 'uvedomitel1@gmail.com',
-        to: 'romanyakovenko31@gmail.com',
-        subject: 'ЗАПИСЬ НА КОНСУЛЬТАЦИЮ',
-        text: `Новая запись на консультацию, контакты: имя ${name}, связь ${email}`,
-      };
-      transporter.sendMail(mailOptions, (err, succes) => {
-        if (err) console.log(err);
-        else console.log('succes');
-      });
-      return res.status(200).json({ status: 'ok' });
-    } else {
-      return res.status(404).json({ status: 'bad' });
-    }
+    // if (email && name) {
+    //   let mailOptions = {
+    //     from: 'uvedomitel1@gmail.com',
+    //     to: 'romanyakovenko31@gmail.com',
+    //     subject: 'ЗАПИСЬ НА КОНСУЛЬТАЦИЮ',
+    //     text: `Новая запись на консультацию, контакты: имя ${name}, связь ${email}`,
+    //   };
+    //   transporter.sendMail(mailOptions, (err, succes) => {
+    //     if (err) console.log(err);
+    //     else console.log('succes');
+    //   });
+    //   return res.status(200).json({ status: 'ok' });
+    // } else {
+    //   return res.status(404).json({ status: 'bad' });
+    // }
+    return res.json(email);
   }
 
   async getReviews(req, res, next) {
@@ -99,13 +100,13 @@ class DataController {
   async updateReviewStatus(req, res, next) {
     const { id } = req.body;
     await Review.update({ status: true }, { where: { id } });
-    return res.status(200).json({ status: 'ok' });
+    return res.status(200).json({ status: "ok" });
   }
 
   async deleteReview(req, res, next) {
     const { id } = req.body;
     const review = await Review.destroy({ where: { id } });
-    return res.status(200).json({ status: 'ok' });
+    return res.status(200).json({ status: "ok" });
   }
 
   async getBlogCards(req, res, next) {
@@ -133,12 +134,12 @@ class DataController {
     const blog = await BlogCards.findOne({ where: { id } });
     if (like) {
       blog.update({
-        ['likes']: [...blog.likes, like],
+        ["likes"]: [...blog.likes, like],
       });
     }
     if (dislike) {
       blog.update({
-        ['dislikes']: [...blog.dislikes, dislike],
+        ["dislikes"]: [...blog.dislikes, dislike],
       });
     }
     return res.json(blog);
@@ -164,12 +165,12 @@ class DataController {
 
   async auth(req, res, next) {
     const { login, password } = req.body;
-    if (login === 'root' && password === 'LVg=F#kN|U7n')
+    if (login === "root" && password === "LVg=F#kN|U7n")
       return res.json({
         status: 200,
-        token: 'welcome23425dfHHgDFJAFadvokat3756GFGF^%Rfytetoyour panel',
+        token: "welcome23425dfHHgDFJAFadvokat3756GFGF^%Rfytetoyour panel",
       });
-    return res.json({ message: 'premission deny' });
+    return res.json({ message: "premission deny" });
   }
 
   async createPost(req, res, next) {
@@ -178,8 +179,8 @@ class DataController {
     const day = today.getDate();
     const month = today.getMonth() + 1;
     const year = today.getFullYear();
-    const todayDate = `${day > 9 ? day : '0' + day}.${
-      month > 9 ? month : '0' + month
+    const todayDate = `${day > 9 ? day : "0" + day}.${
+      month > 9 ? month : "0" + month
     }.${year}`;
     const post = await BlogCards.create({
       image,
