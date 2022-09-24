@@ -8,7 +8,7 @@ router.get('/not-confirmed-reviews', DataController.getNotConfirmedReviews);
 router.post('/reviews', DataController.sendReview);
 router.patch('/reviews', DataController.updateReviewStatus);
 router.delete('/reviews', DataController.deleteReview);
-router.get('/another-blog', DataController.getAnotherBlog);
+router.get('/another-blog/:id', DataController.getAnotherBlog);
 router.post('/review-card/:id', DataController.sendReaction);
 router.post('/article', DataController.sendComment);
 router.get('/comments/:id', DataController.getCommentsById);

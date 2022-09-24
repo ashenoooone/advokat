@@ -1,5 +1,5 @@
-const ApiError = require("../error/ApiError");
-const { Review, BlogCards, Comments } = require("../models/models");
+const ApiError = require('../error/ApiError');
+const { Review, BlogCards, Comments } = require('../models/models');
 // const { google } = require("googleapis");
 // const nodemailer = require("nodemailer");
 // const config = require("./nodemailer/config.js");
@@ -8,16 +8,16 @@ const { Review, BlogCards, Comments } = require("../models/models");
 // OAuth2_client.setCredentials({ refresh_token: config.refreshToken });
 // const accesToken = OAuth2_client.getAccessToken();
 
-// const getTodayDate = () => {
-//   const today = new Date();
-//   const day = today.getDate();
-//   const month = today.getMonth() + 1;
-//   const year = today.getFullYear();
-//   const todayDate = `${day > 9 ? day : "0" + day}.${
-//     month > 9 ? month : "0" + month
-//   }.${year}`;
-//   return todayDate;
-// };
+const getTodayDate = () => {
+  const today = new Date();
+  const day = today.getDate();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  const todayDate = `${day > 9 ? day : '0' + day}.${
+    month > 9 ? month : '0' + month
+  }.${year}`;
+  return todayDate;
+};
 
 // let transporter = nodemailer.createTransport({
 //   service: "gmail",
@@ -100,13 +100,13 @@ class DataController {
   async updateReviewStatus(req, res, next) {
     const { id } = req.body;
     await Review.update({ status: true }, { where: { id } });
-    return res.status(200).json({ status: "ok" });
+    return res.status(200).json({ status: 'ok' });
   }
 
   async deleteReview(req, res, next) {
     const { id } = req.body;
     const review = await Review.destroy({ where: { id } });
-    return res.status(200).json({ status: "ok" });
+    return res.status(200).json({ status: 'ok' });
   }
 
   async getBlogCards(req, res, next) {
@@ -115,11 +115,17 @@ class DataController {
   }
 
   async getAnotherBlog(req, res, next) {
+    const { id } = req.params;
     const allCards = await BlogCards.findAll();
-    const bestCards = allCards
-      .sort((a, b) => a.likes.length - b.likes.length)
-      .slice(allCards.length - 3, allCards.length);
-    return res.json({ anotherBlogs: bestCards });
+    const filteredCards = allCards.filter(card => card.id != id);
+    const bestCards = filteredCards.sort(
+      (a, b) => a.likes.length - b.likes.length
+    );
+    const thirdBestCards = bestCards.slice(
+      filteredCards.length - 3,
+      filteredCards.length
+    );
+    return res.json({ anotherBlogs: thirdBestCards });
   }
 
   async getCardsById(req, res, next) {
@@ -134,12 +140,12 @@ class DataController {
     const blog = await BlogCards.findOne({ where: { id } });
     if (like) {
       blog.update({
-        ["likes"]: [...blog.likes, like],
+        ['likes']: [...blog.likes, like],
       });
     }
     if (dislike) {
       blog.update({
-        ["dislikes"]: [...blog.dislikes, dislike],
+        ['dislikes']: [...blog.dislikes, dislike],
       });
     }
     return res.json(blog);
@@ -165,12 +171,12 @@ class DataController {
 
   async auth(req, res, next) {
     const { login, password } = req.body;
-    if (login === "root" && password === "LVg=F#kN|U7n")
+    if (login === 'root' && password === 'LVg=F#kN|U7n')
       return res.json({
         status: 200,
-        token: "welcome23425dfHHgDFJAFadvokat3756GFGF^%Rfytetoyour panel",
+        token: 'welcome23425dfHHgDFJAFadvokat3756GFGF^%Rfytetoyour panel',
       });
-    return res.json({ message: "premission deny" });
+    return res.json({ message: 'premission deny' });
   }
 
   async createPost(req, res, next) {
@@ -179,8 +185,8 @@ class DataController {
     const day = today.getDate();
     const month = today.getMonth() + 1;
     const year = today.getFullYear();
-    const todayDate = `${day > 9 ? day : "0" + day}.${
-      month > 9 ? month : "0" + month
+    const todayDate = `${day > 9 ? day : '0' + day}.${
+      month > 9 ? month : '0' + month
     }.${year}`;
     const post = await BlogCards.create({
       image,
