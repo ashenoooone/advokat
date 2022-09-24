@@ -148,13 +148,9 @@ const ConsulPopup = ({ isOpened, onClosePopupClick, onClose }) => {
             </form>
             <p className="consul-popup__conf">
               Нажимая на кнопку, я соглашаюсь с условиями{" "}
-              <a
-                href="#"
-                className="consul-popup__link"
-                onClick={onOpenPopupClick}
-              >
+              <button className="popup__conf-button" onClick={onOpenPopupClick}>
                 политики конфиденциальности.
-              </a>
+              </button>
             </p>
           </motion.div>
         )}

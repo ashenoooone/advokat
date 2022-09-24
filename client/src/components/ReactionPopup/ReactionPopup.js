@@ -148,13 +148,9 @@ const ReactionPopup = ({ isLike, id, setCards, onClose }) => {
           </form>
           <p className="consul-popup__conf">
             Нажимая на кнопку, я соглашаюсь с условиями{" "}
-            <a
-              href="#"
-              className="reaction-popup__link"
-              onClick={onOpenPopupClick}
-            >
+            <button className="popup__conf-button" onClick={onOpenPopupClick}>
               политики конфиденциальности.
-            </a>
+            </button>
           </p>
         </div>
       </motion.div>

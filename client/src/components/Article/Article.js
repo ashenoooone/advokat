@@ -177,9 +177,9 @@ const Article = () => {
           </form>
           <p className="review-popup__conf">
             Нажимая на кнопку, я соглашаюсь с условиями{" "}
-            <a href="#" className="popup__link">
+            <button className="popup__conf-button">
               политики конфиденциальности.
-            </a>
+            </button>
           </p>
         </div>
       </div>
