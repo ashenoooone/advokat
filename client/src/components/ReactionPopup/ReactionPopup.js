@@ -28,7 +28,11 @@ const ReactionPopup = ({ isLike, id, setCards, onClose }) => {
         const updateCard = state.find((card) => card.id === id);
         updateCard.likes.push(email);
         const cards = state.filter((card) => card.id !== id);
-        return [...cards, updateCard].sort((a, b) => a.id - b.id);
+        return [...cards, updateCard].sort((a, b) => {
+          const firstDate = new Date(a.createdAt).getTime();
+          const secondDate = new Date(b.createdAt).getTime();
+          return secondDate - firstDate;
+        });
       });
   }, [email, id]);
 
@@ -49,7 +53,11 @@ const ReactionPopup = ({ isLike, id, setCards, onClose }) => {
         const updateCard = state.find((card) => card.id === id);
         updateCard.dislikes.push(email);
         const cards = state.filter((card) => card.id !== id);
-        return [...cards, updateCard].sort((a, b) => a.id - b.id);
+        return [...cards, updateCard].sort((a, b) => {
+          const firstDate = new Date(a.createdAt).getTime();
+          const secondDate = new Date(b.createdAt).getTime();
+          return secondDate - firstDate;
+        });
       });
   }, [email, id]);
 

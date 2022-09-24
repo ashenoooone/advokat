@@ -85,7 +85,7 @@ const Article = () => {
   }, [id]);
   const getAnotherBlog = useCallback(async () => {
     const response = await axios.get(
-      `http://134.0.115.164:7000/api/another-blog`,
+      `http://134.0.115.164:7000/api/another-blog/${id}`,
       {
         headers: {
           "Access-Control-Allow-Origin": "*",

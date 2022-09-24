@@ -20,7 +20,13 @@ const Blog = () => {
       },
     });
     if (res) {
-      setCards(res.data);
+      setCards(state =>
+        res.data.sort((a, b) => {
+          const firstDate = new Date(a.createdAt).getTime();
+          const secondDate = new Date(b.createdAt).getTime();
+          return secondDate - firstDate;
+        })
+      );
       setPaginationLength(res.data.length);
     }
   }, [cards]);
