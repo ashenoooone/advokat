@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useLayoutEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import "./BlogCard.scss";
-import like from "../../assets/like.svg";
-import dislike from "../../assets/dislike.svg";
-import ReactionPopup from "../ReactionPopup/ReactionPopup";
-import LinesEllipsis from "react-lines-ellipsis";
-import responsiveHOC from "react-lines-ellipsis/lib/responsiveHOC";
+import React, { useEffect, useState, useLayoutEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import './BlogCard.scss';
+import like from '../../assets/like.svg';
+import dislike from '../../assets/dislike.svg';
+import ReactionPopup from '../ReactionPopup/ReactionPopup';
+import LinesEllipsis from 'react-lines-ellipsis';
+import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
 
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
 
@@ -31,55 +31,55 @@ const BlogCard = ({
   const [maxLines, setMaxLines] = useState(6);
   const [isOpen, setOpen] = useState(false);
   const onClose = () => setOpen(false);
-  const handleTogglePopup = (e) => {
+  const handleTogglePopup = e => {
     e.stopPropagation();
     if (
-      e.target.closest("div").className ===
-        "card__buttos-container" + " card__buttos-container__" + id ||
-      e.target.closest("div").className ===
-        "card__buttons" + " card__buttons__" + id ||
-      e.target.closest("div").className ===
-        "card__button-box" + " card__button-box__" + id
+      e.target.closest('div').className ===
+        'card__buttos-container' + ' card__buttos-container__' + id ||
+      e.target.closest('div').className ===
+        'card__buttons' + ' card__buttons__' + id ||
+      e.target.closest('div').className ===
+        'card__button-box' + ' card__button-box__' + id
     )
       return setOpen(!isOpen);
   };
-  const handleKeyPressClosePopup = (e) => {
-    if (isOpen && e.key === "Escape") setOpen(false);
+  const handleKeyPressClosePopup = e => {
+    if (isOpen && e.key === 'Escape') setOpen(false);
   };
   useLayoutEffect(() => {
     const titleEl = titleRef.current;
     if (titleEl.offsetHeight > 31) {
-      setMaxLines((maxLines) => maxLines - titleEl.offsetHeight / 31 + 1);
+      setMaxLines(maxLines => maxLines - titleEl.offsetHeight / 31 + 1);
     }
   }, [titleRef, text]);
 
   useEffect(() => {
-    document.addEventListener("keydown", handleKeyPressClosePopup);
+    document.addEventListener('keydown', handleKeyPressClosePopup);
     return () => {
-      document.removeEventListener("keydown", handleKeyPressClosePopup);
+      document.removeEventListener('keydown', handleKeyPressClosePopup);
     };
   }, [isOpen]);
 
   return (
-    <div className="card">
-      <img src={image} className="card__img" />
-      <div className="card__info">
-        <p className="card__time">{time}</p>
-        <h3 className="card__title" ref={titleRef}>
+    <div className='card'>
+      <img src={'http://134.0.115.164:7000/' + image} className='card__img' />
+      <div className='card__info'>
+        <p className='card__time'>{time}</p>
+        <h3 className='card__title' ref={titleRef}>
           {title}
         </h3>
         <ResponsiveEllipsis
           text={text}
           maxLine={maxLines}
-          ellipsis="..."
+          ellipsis='...'
           trimRight
-          basedOn="letters"
-          component="p"
-          className="card__description"
+          basedOn='letters'
+          component='p'
+          className='card__description'
         />
       </div>
-      <div className="card__buttons">
-        <Link to={`/article/${id}`} className="card__more">
+      <div className='card__buttons'>
+        <Link to={`/article/${id}`} className='card__more'>
           Подробнее
         </Link>
         <div className={`card__buttos-container card__buttos-container__${id}`}>
@@ -89,11 +89,11 @@ const BlogCard = ({
           >
             <img
               src={like}
-              alt="like"
-              className="card__button"
+              alt='like'
+              className='card__button'
               onClick={handleLikeClick}
             />
-            <span className="card__number">{likes.length}</span>
+            <span className='card__number'>{likes.length}</span>
           </div>
           <div
             className={`card__button-box card__button-box__${id}`}
@@ -101,11 +101,11 @@ const BlogCard = ({
           >
             <img
               src={dislike}
-              alt="dislike"
-              className="card__button"
+              alt='dislike'
+              className='card__button'
               onClick={handleDislikeClick}
             />
-            <span className="card__number">{dislikes.length}</span>
+            <span className='card__number'>{dislikes.length}</span>
           </div>
           {isOpen && (
             <ReactionPopup
