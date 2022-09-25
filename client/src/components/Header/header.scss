@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 17px 16px 20px;
-  height: 160px;
+  padding: 17px 0 20px;
+  height: 70px;
   position: sticky;
   background: white;
   top: 0;
@@ -43,7 +43,7 @@
 
   &__name {
     text-transform: uppercase;
-    font-family: "Lora", "Courier New", Courier, monospace;
+    font-family: 'Lora', 'Courier New', Courier, monospace;
     font-weight: 700;
     font-size: 30px;
     line-height: 100%;
@@ -60,7 +60,7 @@
 
   &__job {
     text-transform: uppercase;
-    font-family: "Lora", "Courier New", Courier, monospace;
+    font-family: 'Lora', 'Courier New', Courier, monospace;
     font-weight: 500;
     font-size: 16px;
     line-height: 100%;
@@ -107,7 +107,7 @@
       }
     }
     &-link {
-      font-family: "SourceSansPro", "Courier New", Courier, monospace;
+      font-family: 'SourceSansPro', 'Courier New', Courier, monospace;
       font-style: normal;
       font-weight: 400;
       font-size: 20px;
@@ -119,7 +119,7 @@
   }
 
   &__link {
-    font-family: "SourceSansPro", "Courier New", Courier, monospace;
+    font-family: 'SourceSansPro', 'Courier New', Courier, monospace;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
