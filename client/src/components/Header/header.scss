@@ -3,13 +3,17 @@
   flex-direction: column;
   width: 100%;
   padding: 17px 0 20px;
-  height: 70px;
   position: sticky;
   background: white;
   top: 0;
   transition: all 0.3s ease-in-out;
   z-index: 1;
-
+  @media screen and (max-width: 1279px) {
+    height: 120px;
+  }
+  @media screen and (max-width: 764px) {
+    height: 90px;
+  }
   &_hide {
     transform: translateY(-150px);
   }
@@ -25,7 +29,7 @@
       padding: 0 60px;
     }
     @media screen and (max-width: 764px) {
-      padding: 0;
+      padding: 0 22px;
     }
     @media screen and (max-width: 374px) {
       padding: 0 16px;
