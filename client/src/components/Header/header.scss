@@ -25,7 +25,7 @@
       padding: 0 60px;
     }
     @media screen and (max-width: 764px) {
-      padding: 0 40px;
+      padding: 0;
     }
     @media screen and (max-width: 374px) {
       padding: 0 16px;
@@ -43,7 +43,7 @@
 
   &__name {
     text-transform: uppercase;
-    font-family: 'Lora', 'Courier New', Courier, monospace;
+    font-family: "Lora", "Courier New", Courier, monospace;
     font-weight: 700;
     font-size: 30px;
     line-height: 100%;
@@ -60,7 +60,7 @@
 
   &__job {
     text-transform: uppercase;
-    font-family: 'Lora', 'Courier New', Courier, monospace;
+    font-family: "Lora", "Courier New", Courier, monospace;
     font-weight: 500;
     font-size: 16px;
     line-height: 100%;
@@ -107,7 +107,7 @@
       }
     }
     &-link {
-      font-family: 'SourceSansPro', 'Courier New', Courier, monospace;
+      font-family: "SourceSansPro", "Courier New", Courier, monospace;
       font-style: normal;
       font-weight: 400;
       font-size: 20px;
@@ -119,7 +119,7 @@
   }
 
   &__link {
-    font-family: 'SourceSansPro', 'Courier New', Courier, monospace;
+    font-family: "SourceSansPro", "Courier New", Courier, monospace;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -146,10 +146,7 @@
   &__burger {
     display: none;
   }
-}
-
-@media screen and (max-width: 1023px) {
-  .header {
+  @media screen and (max-width: 1023px) {
     &__burger {
       display: block;
       margin: 0 0 0 auto;
